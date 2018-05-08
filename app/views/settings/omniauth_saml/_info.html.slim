@@ -1,0 +1,48 @@
+h3
+  = l(:label_information_plural)
+
+table.list.saml-config
+  thead
+    tr
+      th = l(:field_name)
+      th = l(:field_value)
+  tbody
+    - Redmine::OmniAuthSAML.configured_saml.each do |key, config|
+      tr class="#{cycle('odd', 'even')}"
+        td.name = key
+        td.value = config
+
+em.info
+  = link_to('See documentation for more information', 'https://github.com/omniauth/omniauth-saml#options', class: 'external')
+em.info
+  = link_to('SAML Online Tools', 'https://www.samltool.com/online_tools.php', class: 'external')
+
+
+br
+
+- if @settings['enabled']
+  h3
+    = l(:label_saml_test_plural)
+
+  ul
+    li
+      = link_to('/saml/metadata', '/saml/metadata')
+      ' :
+      = link_to(Redmine::OmniAuthSAML.configured_saml[:issuer], Redmine::OmniAuthSAML.configured_saml[:issuer])
+      '
+      = saml_url_validate_test(Redmine::OmniAuthSAML.configured_saml[:issuer],
+                               saml_metadata_url)
+    li
+      = link_to('/auth/saml/callback', '/auth/saml/callback')
+      ' :
+      = link_to(Redmine::OmniAuthSAML.configured_saml[:assertion_consumer_service_url], Redmine::OmniAuthSAML.configured_saml[:assertion_consumer_service_url])
+      '
+      = saml_url_validate_test(Redmine::OmniAuthSAML.configured_saml[:assertion_consumer_service_url],
+                               saml_callback_url(provider: 'saml'))
+    li
+      = link_to('/auth/saml/sls', '/auth/saml/sls')
+      ' :
+      = link_to(Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url], Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url])
+      '
+      = saml_url_validate_test(Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url],
+                               sign_out_url(provider: 'saml'))

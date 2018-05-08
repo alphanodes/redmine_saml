@@ -1,0 +1,14 @@
+p
+  = label_tag 'settings[enabled]', l(:label_saml_enabled)
+  = check_box_tag 'settings[enabled]', true, @settings['enabled']
+
+p
+  = label_tag 'settings[label_login_with_saml]', l(:label_login_page_text)
+  = text_field_tag 'settings[label_login_with_saml]', @settings['label_login_with_saml'], size: 50
+p
+  = label_tag 'settings[replace_redmine_login]', l(:label_replace_redmine_login)
+  = check_box_tag 'settings[replace_redmine_login]', true, @settings['replace_redmine_login']
+
+p
+  = label_tag 'settings[onthefly_creation]', l(:label_onthefly_creation)
+  = check_box_tag 'settings[onthefly_creation]', true, @settings['onthefly_creation']

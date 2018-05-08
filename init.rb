@@ -2,6 +2,7 @@ require 'redmine'
 require 'redmine_omniauth_saml'
 require 'redmine_omniauth_saml/hooks'
 require 'redmine_omniauth_saml/user_patch'
+require 'redmine_omniauth_saml/helpers'
 
 # Patches to existing classes/modules
 ActionDispatch::Callbacks.to_prepare do
@@ -18,5 +19,5 @@ Redmine::Plugin.register :redmine_omniauth_saml do
   version '0.9.9'
   requires_redmine version_or_higher: '3.4'
   settings default: { 'enabled' => 'true', 'label_login_with_saml' => '', 'replace_redmine_login' => false },
-           partial: 'settings/omniauth_saml_settings'
+           partial: 'settings/omniauth_saml/omniauth_saml'
 end

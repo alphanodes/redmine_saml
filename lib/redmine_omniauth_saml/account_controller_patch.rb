@@ -21,7 +21,7 @@ module Redmine::OmniAuthSAML
       end
 
       def login_with_saml_redirect
-        render text: 'Not Found', status: :not_found
+        render_404
       end
 
       def login_with_saml_callback

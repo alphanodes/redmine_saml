@@ -8,3 +8,4 @@ es:
   notice_account_invalid_credentials: Invalid creditentials
   text_full_logout_proposal: Tal vez quiera %{value} antes de intentar con otro usuario
   text_logout_from_saml: cerrar su sesión SSO
+  label_saml_test_plural: Tests
