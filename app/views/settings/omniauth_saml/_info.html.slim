@@ -26,21 +26,21 @@ br
 
   ul
     li
-      = link_to('/saml/metadata', '/saml/metadata')
+      = link_to(saml_metadata_path, saml_metadata_url)
       ' :
       = link_to(Redmine::OmniAuthSAML.configured_saml[:issuer], Redmine::OmniAuthSAML.configured_saml[:issuer])
       '
       = saml_url_validate_test(Redmine::OmniAuthSAML.configured_saml[:issuer],
                                saml_metadata_url)
     li
-      = link_to('/auth/saml/callback', '/auth/saml/callback')
+      = link_to(saml_callback_path(provider: 'saml'), saml_callback_url(provider: 'saml'))
       ' :
       = link_to(Redmine::OmniAuthSAML.configured_saml[:assertion_consumer_service_url], Redmine::OmniAuthSAML.configured_saml[:assertion_consumer_service_url])
       '
       = saml_url_validate_test(Redmine::OmniAuthSAML.configured_saml[:assertion_consumer_service_url],
                                saml_callback_url(provider: 'saml'))
     li
-      = link_to('/auth/saml/sls', '/auth/saml/sls')
+      = link_to(sign_out_path(provider: 'saml'), sign_out_url(provider: 'saml'))
       ' :
       = link_to(Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url], Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url])
       '
