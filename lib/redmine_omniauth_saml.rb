@@ -27,7 +27,6 @@ module Redmine::OmniAuthSAML
     def on_login_callback
       Base.on_login_callback
     end
-
   end
 
   class Base

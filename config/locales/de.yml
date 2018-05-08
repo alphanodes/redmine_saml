@@ -5,6 +5,6 @@ de:
   label_onthefly_creation: Benutzer automatisch anlegen?
   label_replace_redmine_login: Redmine Anmeldeseite ersetzen
   label_saml_enabled: SAML Authentifizierung aktivieren
-  notice_account_invalid_creditentials: Ungültige Zugangsdaten
+  notice_account_invalid_credentials: Ungültige Zugangsdaten
   text_full_logout_proposal: You may want to %{value} before trying an other username.
   text_logout_from_saml: SSO Sitzung schliessen

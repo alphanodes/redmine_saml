@@ -5,6 +5,6 @@ en:
   label_onthefly_creation: Create users automatically?
   label_replace_redmine_login: Replace Redmine login page
   label_saml_enabled: Enable SAML authentication
-  notice_account_invalid_creditentials: Invalid creditentials
+  notice_account_invalid_credentials: Invalid creditentials
   text_full_logout_proposal: You may want to %{value} before trying an other username.
   text_logout_from_saml: close SSO session

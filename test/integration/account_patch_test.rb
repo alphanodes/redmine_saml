@@ -50,7 +50,7 @@ class AccountPatchTest < Redmine::IntegrationTest
         assert_redirected_to '/login'
         follow_redirect!
         assert_equal User.anonymous, User.current
-        assert_select 'div.flash.error', /Invalid user or password/
+        assert_select 'div.flash.error', text: /Invalid user or password/
       end
 
       should "create user if doesn't exist when on thefly_creation is set" do

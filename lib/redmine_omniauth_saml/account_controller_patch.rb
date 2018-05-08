@@ -5,7 +5,6 @@ module Redmine::OmniAuthSAML
     def self.included(base)
       base.send(:include, InstanceMethods)
       base.class_eval do
-        unloadable
         alias_method_chain :login, :saml
         alias_method_chain :logout, :saml
       end
@@ -34,7 +33,7 @@ module Redmine::OmniAuthSAML
         # maybe it should be splitted in core
         if user.blank?
           logger.warn "Failed login for '#{auth[:uid]}' from #{request.remote_ip} at #{Time.now.utc}"
-          error = l(:notice_account_invalid_creditentials).sub(/\.$/, '')
+          error = l(:notice_account_invalid_credentials).sub(/\.$/, '')
           if saml_settings['enabled']
             link = self.class.helpers.link_to(l(:text_logout_from_saml), saml_logout_url(home_url), target: '_blank')
             error << ". #{l(:text_full_logout_proposal, value: link)}"
@@ -104,7 +103,10 @@ module Redmine::OmniAuthSAML
 
         # Generate a response to the IdP.
         logout_request_id = logout_request.id
-        logout_response = OneLogin::RubySaml::SloLogoutresponse.new.create(settings, logout_request_id, nil, RelayState: params[:RelayState])
+        logout_response = OneLogin::RubySaml::SloLogoutresponse.new.create(settings,
+                                                                           logout_request_id,
+                                                                           nil,
+                                                                           RelayState: params[:RelayState])
 
         redirect_to logout_response
       end
@@ -114,7 +116,9 @@ module Redmine::OmniAuthSAML
       def process_logout_response
         settings = OneLogin::RubySaml::Settings.new omniauth_saml_settings
 
-        logout_response = OneLogin::RubySaml::Logoutresponse.new(params[:SAMLResponse], settings, session.key?(:transaction_id) ? { matches_request_id: session[:transaction_id] } : {})
+        logout_response = OneLogin::RubySaml::Logoutresponse.new(params[:SAMLResponse],
+                                                                 settings,
+                                                                 session.key?(:transaction_id) ? { matches_request_id: session[:transaction_id] } : {})
 
         logger.info "LogoutResponse is: #{logout_response}"
 
