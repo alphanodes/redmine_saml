@@ -1,9 +1,10 @@
 en:
-  label_login_with_saml: Login with SAML
+  error_saml_invalid_ticket: Invalid SAML ticket
   label_login_page_text: Login page text
-  label_saml_enabled: Enable SAML authentication
+  label_login_with_saml: Login with SAML
+  label_onthefly_creation: Create users automatically?
   label_replace_redmine_login: Replace Redmine login page
+  label_saml_enabled: Enable SAML authentication
+  notice_account_invalid_creditentials: Invalid creditentials
   text_full_logout_proposal: You may want to %{value} before trying an other username.
   text_logout_from_saml: close SSO session
-  label_onthefly_creation: Create users automatically?
-  error_saml_invalid_ticket: Invalid SAML ticket

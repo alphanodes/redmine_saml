@@ -1,20 +1,19 @@
 module Redmine::OmniAuthSAML
   class << self
-
     def settings_hash
-      Setting["plugin_redmine_omniauth_saml"]
+      Setting['plugin_redmine_omniauth_saml']
     end
 
     def enabled?
-      settings_hash["enabled"]
+      settings_hash['enabled']
     end
 
     def onthefly_creation?
-      enabled? && settings_hash["onthefly_creation"]
+      enabled? && settings_hash['onthefly_creation']
     end
 
     def label_login_with_saml
-      settings_hash["label_login_with_saml"]
+      settings_hash['label_login_with_saml']
     end
 
     def user_attributes_from_saml(omniauth)
@@ -65,7 +64,7 @@ module Redmine::OmniAuthSAML
           required_attribute_mapping.each do |symbol|
             key = configured_saml[:attribute_mapping][symbol]
             h[symbol] = key.split('.')                # Get an array with nested keys: name.first will return [name, first]
-              .map {|x| [:[], x]}                     # Create pair elements being :[] symbol and the key
+              .map { |x| [:[], x] }                   # Create pair elements being :[] symbol and the key
               .inject(omniauth) do |hash, params|     # For each key, apply method :[] with key as parameter
                 hash.send(*params)
               end
@@ -80,24 +79,24 @@ module Redmine::OmniAuthSAML
       end
 
       def required_attribute_mapping
-        [ :login,
-          :firstname,
-          :lastname,
-          :mail ]
+        %i[login
+           firstname
+           lastname
+           mail]
       end
 
       def validate_configuration!
-        [ :assertion_consumer_service_url,
-          :issuer,
-          :idp_sso_target_url,
-          :name_identifier_format,
-          :idp_slo_target_url,
-          :name_identifier_value,
-          :attribute_mapping ].each do |k|
-            raise "Redmine::OmiauthSAML.configure requires saml.#{k} to be set" unless saml[k]
-          end
+        %i[assertion_consumer_service_url
+           issuer
+           idp_sso_target_url
+           name_identifier_format
+           idp_slo_target_url
+           name_identifier_value
+           attribute_mapping].each do |k|
+          raise "Redmine::OmiauthSAML.configure requires saml.#{k} to be set" unless saml[k]
+        end
 
-        raise "Redmine::OmiauthSAML.configure requires either saml.idp_cert_fingerprint or saml.idp_cert to be set" unless saml[:idp_cert_fingerprint] || saml[:idp_cert]
+        raise 'Redmine::OmiauthSAML.configure requires either saml.idp_cert_fingerprint or saml.idp_cert to be set' unless saml[:idp_cert_fingerprint] || saml[:idp_cert]
 
         required_attribute_mapping.each do |k|
           raise "Redmine::OmiauthSAML.configure requires saml.attribute_mapping[#{k}] to be set" unless saml[:attribute_mapping][k]
@@ -117,7 +116,7 @@ module Redmine::OmniAuthSAML
       def configure_omniauth_saml_middleware
         saml_options = configured_saml
         Rails.application.config.middleware.use ::OmniAuth::Builder do
-            provider :saml, saml_options
+          provider :saml, saml_options
         end
       end
     end
