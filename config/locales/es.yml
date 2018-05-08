@@ -1,7 +1,7 @@
 es:
   error_saml_invalid_ticket: Invalid IDP cert fingerprint
   label_login_page_text: Login page text
-  label_login_with_saml: Acceder usando SAML
+  label_login_with_saml: Acceder usando SSO
   label_onthefly_creation: Crear usuarios automáticamente?
   label_replace_redmine_login: Reemplazar el login de Redmine
   label_saml_enabled: Habilitar autenticación SAML

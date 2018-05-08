@@ -1,7 +1,7 @@
 en:
   error_saml_invalid_ticket: Invalid SAML ticket
   label_login_page_text: Login page text
-  label_login_with_saml: Login with SAML
+  label_login_with_saml: Login with SSO
   label_onthefly_creation: Create users automatically?
   label_replace_redmine_login: Replace Redmine login page
   label_saml_enabled: Enable SAML authentication
