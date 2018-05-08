@@ -1,12 +1,12 @@
-h1. Redmine OmniAuth SAML plugin
+# Redmine OmniAuth SAML plugin
 
-This plugins adds SAML authentication support for "Redmine":http://www.redmine.org thanks to the "OmniAuth authentication framework":https://github.com/intridea/omniauth and specially thanks to "Redmine Omniauth CAS Plugin":https:https://github.com/jbbarth/redmine_omniauth_cas. 
+This plugins adds SAML authentication support for [Redmine](http://www.redmine.org) based on [OmniAuth authentication framework](https://github.com/omniauth/omniauth).
 
-h2. Install
+## Install
 
-You can first take a look at general instructions for plugins "here":http://www.redmine.org/wiki/redmine/Plugins.
+You can first take a look at general instructions for plugins [here](https://www.redmine.org/wiki/redmine/Plugins).
 
-Note that the plugin is now *only compatible with Redmine 3.0 or higher*. For Redmine 2.0 see 2.0 branch
+Note that the plugin is now *only compatible with Redmine 3.4*.
 
 Then :
 * clone this repository in your plugins/ directory ; if you have a doubt you put it at the good level, you can go to your redmine root directoryand check you have a @plugins/redmine_omniauth_saml/init.rb@ file
@@ -17,8 +17,3 @@ Then :
 Finally you *must* configure your SAML settings adding a file in @<redmine_folder>/config/initializers@ for example named @saml.rb@ (the name is not important, but it must be a ruby file). A sample file is given in the plugin root folder named @sample-saml-initializers.rb@
 
 Finaly you need to configure some minor options for the plugin to work, in "Administration" > "Plugins" > "Configure" on the OmniAuth SAML plugin line.
-
-
-h2. Donations
-
-<a href='https://pledgie.com/campaigns/33451'><img alt='Click here to lend your support to: Redmine Omniauth SAML Plugin and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/33451.png?skin_name=chrome' border='0' ></a>
