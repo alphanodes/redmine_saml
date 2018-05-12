@@ -10,7 +10,7 @@ module Redmine
       end
 
       module ClassMethods
-        def self.find_or_create_from_omniauth(omniauth)
+        def find_or_create_from_omniauth(omniauth)
           user_attributes = Redmine::OmniAuthSAML.user_attributes_from_saml omniauth
           user = find_by(login: user_attributes[:login])
           unless user
