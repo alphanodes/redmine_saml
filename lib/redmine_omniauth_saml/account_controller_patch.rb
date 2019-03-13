@@ -4,18 +4,21 @@ module Redmine
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          alias_method_chain :login, :saml
-          alias_method_chain :logout, :saml
+          alias_method :login_without_omniauth_saml, :login
+          alias_method :login, :login_with_omniauth_saml
+
+          alias_method :logout_without_omniauth_saml, :logout
+          alias_method :logout, :logout_with_omniauth_saml
         end
       end
 
       module InstanceMethods
-        def login_with_saml
+        def login_with_omniauth_saml
           # TODO: test 'replace_redmine_login' feature
           if saml_settings['enabled'] && saml_settings['replace_redmine_login']
             redirect_to controller: 'account', action: 'login_with_saml_redirect', provider: 'saml', origin: back_url
           else
-            login_without_saml
+            login_without_omniauth_saml
           end
         end
 
@@ -65,11 +68,11 @@ module Redmine
           end
         end
 
-        def logout_with_saml
+        def logout_with_omniauth_saml
           if saml_settings['enabled'] && session[:logged_in_with_saml]
             do_logout_with_saml
           else
-            logout_without_saml
+            logout_without_omniauth_saml
           end
         end
 

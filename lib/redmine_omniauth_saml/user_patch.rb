@@ -5,7 +5,8 @@ module Redmine
         base.extend(ClassMethods)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          alias_method_chain :change_password_allowed?, :omniauth_saml
+          alias_method :change_password_allowed_without_omniauth_saml?, :change_password_allowed?
+          alias_method :change_password_allowed?, :change_password_allowed_with_omniauth_saml?
         end
       end
 
