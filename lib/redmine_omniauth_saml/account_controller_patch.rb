@@ -198,5 +198,5 @@ end
 
 unless AccountController.included_modules.include? Redmine::OmniAuthSAML::AccountControllerPatch
   AccountController.send(:include, Redmine::OmniAuthSAML::AccountControllerPatch)
-  AccountController.skip_before_filter :verify_authenticity_token, only: [:login_with_saml_callback]
+  AccountController.skip_before_action :verify_authenticity_token, only: [:login_with_saml_callback]
 end
