@@ -14,8 +14,7 @@ module Redmine
 
       module InstanceMethods
         def login_with_omniauth_saml
-          # TODO: test 'replace_redmine_login' feature
-          if saml_settings['enabled'] && saml_settings['replace_redmine_login']
+          if Additionals.true?(saml_settings['enabled']) && saml_settings['replace_redmine_login']
             redirect_to controller: 'account', action: 'login_with_saml_redirect', provider: 'saml', origin: back_url
           else
             login_without_omniauth_saml
@@ -36,7 +35,7 @@ module Redmine
           if user.blank?
             logger.warn "Failed login for '#{auth[:uid]}' from #{request.remote_ip} at #{Time.now.utc}"
             error = l(:notice_account_invalid_credentials).sub(/\.$/, '')
-            if saml_settings['enabled']
+            if Additionals.true?(saml_settings['enabled'])
               link = self.class.helpers.link_to(l(:text_logout_from_saml), saml_logout_url(home_url), target: '_blank')
               error << ". #{l(:text_full_logout_proposal, value: link)}"
             end
@@ -69,7 +68,7 @@ module Redmine
         end
 
         def logout_with_omniauth_saml
-          if saml_settings['enabled'] && session[:logged_in_with_saml]
+          if Additionals.true?(saml_settings['enabled']) && session[:logged_in_with_saml]
             do_logout_with_saml
           else
             logout_without_omniauth_saml

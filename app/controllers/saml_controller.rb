@@ -3,12 +3,12 @@ class SamlController < ApplicationController
   skip_before_action :check_if_login_required, :check_password_change
 
   def metadata
-    return render_404 unless saml_settings['enabled']
+    return render_404 unless Additionals.true?(saml_settings['enabled'])
 
     settings = OneLogin::RubySaml::Settings.new omniauth_saml_settings
     metadata = OneLogin::RubySaml::Metadata.new
     output = metadata.generate settings
-    render text: output, content_type: 'application/xml'
+    render plain: output, content_type: 'application/xml'
   end
 
   private
