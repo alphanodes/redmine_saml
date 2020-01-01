@@ -4,7 +4,7 @@ class RedmineOmniAuthSAMLTest < ActiveSupport::TestCase
   context '#enabled?' do
     should 'return enabled? if setting is set' do
       Setting['plugin_redmine_omniauth_saml']['enabled'] = false
-      assert !Redmine::OmniAuthSAML.enabled?
+      assert_not Redmine::OmniAuthSAML.enabled?
     end
   end
 
@@ -19,7 +19,7 @@ class RedmineOmniAuthSAMLTest < ActiveSupport::TestCase
   context '#onthefly_creation?' do
     should 'return onthefly_creation false if setting is set and plugin is disabled' do
       Setting['plugin_redmine_omniauth_saml']['onthefly_creation'] = true
-      assert !Redmine::OmniAuthSAML.onthefly_creation?
+      assert_not Redmine::OmniAuthSAML.onthefly_creation?
     end
 
     should 'return onthefly_creation if setting is set and plugin is enabled' do

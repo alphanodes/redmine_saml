@@ -41,7 +41,7 @@ module Redmine
             end
             if saml_settings['replace_redmine_login']
               render_error(message: error.html_safe, status: 403)
-              return false
+              false
             else
               flash[:error] = error
               redirect_to signin_url
@@ -60,7 +60,7 @@ module Redmine
           error = 'error_saml_' + error
           if saml_settings['replace_redmine_login']
             render_error(message: error.to_sym, status: 500)
-            return false
+            false
           else
             flash[:error] = l(error.to_sym)
             redirect_to signin_url
@@ -196,6 +196,6 @@ module Redmine
 end
 
 unless AccountController.included_modules.include? Redmine::OmniAuthSAML::AccountControllerPatch
-  AccountController.send(:include, Redmine::OmniAuthSAML::AccountControllerPatch)
+  AccountController.include Redmine::OmniAuthSAML::AccountControllerPatch
   AccountController.skip_before_action :verify_authenticity_token, only: [:login_with_saml_callback]
 end

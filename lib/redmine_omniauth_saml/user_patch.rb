@@ -26,7 +26,7 @@ module Redmine
               user.reload
             end
           end
-          Redmine::OmniAuthSAML.on_login_callback.call(omniauth, user) if Redmine::OmniAuthSAML.on_login_callback
+          Redmine::OmniAuthSAML.on_login_callback&.call(omniauth, user)
           user
         end
       end
@@ -40,4 +40,4 @@ module Redmine
   end
 end
 
-User.send(:include, Redmine::OmniAuthSAML::UserPatch) unless User.included_modules.include? Redmine::OmniAuthSAML::UserPatch
+User.include(Redmine::OmniAuthSAML::UserPatch) unless User.included_modules.include? Redmine::OmniAuthSAML::UserPatch

@@ -16,4 +16,4 @@ module Redmine
   end
 end
 
-ActionView::Base.send :include, Redmine::OmniAuthSAML::Helpers
+ActionView::Base.include Redmine::OmniAuthSAML::Helpers

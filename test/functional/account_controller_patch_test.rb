@@ -29,19 +29,25 @@ class AccountControllerTest < Redmine::ControllerTest
 
     should 'redirect to /my/page after successful login' do
       request.env['omniauth.auth'] = { 'login' => 'admin' }
-      get :login_with_saml_callback, provider: 'saml'
+      get :login_with_saml_callback,
+          params: { provider: 'saml' }
+
       assert_redirected_to '/my/page'
     end
 
     should 'redirect to /login after failed login' do
       request.env['omniauth.auth'] = { 'login' => 'non-existent' }
-      get :login_with_saml_callback, provider: 'saml'
+      get :login_with_saml_callback,
+          params: { provider: 'saml' }
+
       assert_redirected_to '/login'
     end
 
     should 'set a boolean in session to keep track of login' do
       request.env['omniauth.auth'] = { 'login' => 'admin' }
-      get :login_with_saml_callback, provider: 'saml'
+      get :login_with_saml_callback,
+          params: { provider: 'saml' }
+
       assert_redirected_to '/my/page'
       assert session[:logged_in_with_saml]
     end

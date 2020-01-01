@@ -1,42 +1,46 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
 Rails:
   Enabled: true
 
 AllCops:
-  TargetRubyVersion: 2.1
-  TargetRailsVersion: 4.2
+  TargetRubyVersion: 2.3
+  TargetRailsVersion: 5.2
 
-Metrics/AbcSize:
-  Max: 65
+Metrics:
+  Enabled: false
 
-Metrics/BlockLength:
-  Max: 60
-
-Metrics/ClassLength:
-  Max: 500
-
-Metrics/CyclomaticComplexity:
-  Max: 20
-
-Metrics/LineLength:
+Layout/LineLength:
   Max: 140
 
-Metrics/MethodLength:
-  Max: 60
+Rails/ApplicationJob:
+  Enabled: false
 
-Metrics/ModuleLength:
-  Max: 500
-
-Metrics/PerceivedComplexity:
-  Max: 20
-
-Rails/SkipsModelValidations:
+Rails/ApplicationRecord:
   Enabled: false
 
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Performance/ChainArrayAllocation:
+  Enabled: true
+
 Style/AutoResourceCleanup:
   Enabled: true
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/Documentation:
+  Enabled: false
+
+Style/ExpandPathArguments:
   Enabled: false

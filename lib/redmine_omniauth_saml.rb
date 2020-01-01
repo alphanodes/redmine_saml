@@ -104,7 +104,9 @@ module Redmine
             raise "Redmine::OmiauthSAML.configure requires saml.#{k} to be set" unless saml[k]
           end
 
-          raise 'Redmine::OmiauthSAML.configure requires either saml.idp_cert_fingerprint or saml.idp_cert to be set' unless saml[:idp_cert_fingerprint] || saml[:idp_cert]
+          unless saml[:idp_cert_fingerprint] || saml[:idp_cert]
+            raise 'Redmine::OmiauthSAML.configure requires either saml.idp_cert_fingerprint or saml.idp_cert to be set'
+          end
 
           required_attribute_mapping.each do |k|
             raise "Redmine::OmiauthSAML.configure requires saml.attribute_mapping[#{k}] to be set" unless saml[:attribute_mapping][k]
