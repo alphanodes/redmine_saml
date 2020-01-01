@@ -6,7 +6,7 @@ This plugins adds SAML authentication support for [Redmine](https://www.redmine.
 
 You can first take a look at general instructions for plugins [here](https://www.redmine.org/wiki/redmine/Plugins).
 
-Note that the plugin is now *only compatible with Redmine 3.4*.
+Note that the plugin is now *only compatible with Redmine 4.0.x or higher.
 
 Then :
 * clone this repository in your plugins/ directory ; if you have a doubt you put it at the good level, you can go to your redmine root directoryand check you have a @plugins/redmine_omniauth_saml/init.rb@ file
