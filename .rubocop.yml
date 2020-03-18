@@ -9,11 +9,29 @@ AllCops:
   TargetRubyVersion: 2.3
   TargetRailsVersion: 5.2
 
-Metrics:
+Metrics/AbcSize:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Max: 20
 
 Layout/LineLength:
   Max: 140
+
+Metrics/MethodLength:
+  Max: 60
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 25
 
 Rails/ApplicationJob:
   Enabled: false
@@ -42,5 +60,15 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+# required for travis/ci (symbolic links problem)
 Style/ExpandPathArguments:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
   Enabled: false
