@@ -2,11 +2,12 @@ module Redmine
   module OmniAuthSAML
     class << self
       def setup
-        require 'redmine_omniauth_saml/user_patch'
-        require 'redmine_omniauth_saml/hooks'
-        require 'redmine_omniauth_saml/helpers'
-
+        require_dependency 'redmine_omniauth_saml/user_patch'
         require_dependency 'redmine_omniauth_saml/account_controller_patch'
+        require_dependency 'redmine_omniauth_saml/hooks'
+
+        AccountController.send(:helper, OmniauthSamlAccountHelper)
+        SettingsController.send(:helper, OmniauthSamlAccountHelper)
       end
 
       def settings_hash
@@ -71,11 +72,11 @@ module Redmine
           HashWithIndifferentAccess.new.tap do |h|
             required_attribute_mapping.each do |symbol|
               key = configured_saml[:attribute_mapping][symbol]
-              h[symbol] = key.split('.')                # Get an array with nested keys: name.first will return [name, first]
-                .map { |x| [:[], x] }                   # Create pair elements being :[] symbol and the key
-                .inject(omniauth) do |hash, params|     # For each key, apply method :[] with key as parameter
-                  hash.send(*params)
-                end
+              h[symbol] = key.split('.')                         # Get an array with nested keys: name.first will return [name, first]
+                             .map { |x| [:[], x] }               # Create pair elements being :[] symbol and the key
+                             .inject(omniauth) do |hash, params| # For each key, apply method :[] with key as parameter
+                               hash.send(*params)
+                             end
             end
           end
         end
@@ -87,10 +88,7 @@ module Redmine
         end
 
         def required_attribute_mapping
-          %i[login
-             firstname
-             lastname
-             mail]
+          %i[login firstname lastname mail admin]
         end
 
         def validate_configuration!

@@ -7,6 +7,8 @@ require Rails.root.join('test/functional/account_controller_test')
 class AccountControllerTest < Redmine::ControllerTest
   fixtures :users, :roles
 
+  include RedmineOmniauthSaml::TestHelper
+
   context 'GET /login SAML button' do
     should "show up only if there's a plugin setting for SAML URL" do
       Setting['plugin_redmine_omniauth_saml']['enabled'] = false
@@ -20,11 +22,7 @@ class AccountControllerTest < Redmine::ControllerTest
 
   context 'GET login_with_saml_callback' do
     setup do
-      # RedmineSAML[:attribute_mapping] = { 'login'      => 'login',
-      #                                     'firstname'  => 'first_name',
-      #                                     'lastname'   => 'last_name',
-      #                                     'mail'       => 'mail' }
-      Setting['plugin_redmine_omniauth_saml']['enabled'] = true
+      prepare_tests
     end
 
     should 'redirect to /my/page after successful login' do
@@ -58,10 +56,10 @@ class AccountControllerTest < Redmine::ControllerTest
     end
 
     should 'redirect to SAML logout if previously logged in with SAML' do
-      RedmineSAML[:logout_admin] = 'http://saml.server/logout?return='
+      Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url] = 'http://saml.server/logout?return='
       session[:logged_in_with_saml] = true
       get :logout
-      assert_redirected_to "#{RedmineSAML[:logout_admin]}http://test.host/"
+      assert_redirected_to Redmine::OmniAuthSAML.configured_saml[:single_logout_service_url]
     end
   end
 end

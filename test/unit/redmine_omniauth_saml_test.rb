@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', __dir__)
 
-class RedmineOmniAuthSAMLTest < ActiveSupport::TestCase
+class RedmineOmniAuthSAMLTest < RedmineOmniauthSaml::TestCase
   context '#enabled?' do
     should 'return enabled? if setting is set' do
       Setting['plugin_redmine_omniauth_saml']['enabled'] = false

@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_omniauth_saml do
   description 'This plugin adds Omniauth SAML support to Redmine.'
   author 'Christian A. Rodriguez, Alexander Meindl'
   url 'https://github.com/alexandermeindl/redmine_omniauth_saml'
-  version '0.9.10'
+  version '0.9.11'
   requires_redmine version_or_higher: '4.0'
   settings default: { 'enabled' => 'true', 'label_login_with_saml' => '', 'replace_redmine_login' => false },
            partial: 'settings/omniauth_saml/omniauth_saml'
