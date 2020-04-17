@@ -28,7 +28,7 @@ module OmniAuthSamlUser
       unless user.nil?
         user.firstname = user_attributes[:firstname]
         user.lastname = user_attributes[:lastname]
-        user.admin = (user_attributes[:admin].present? && user_attributes[:admin])
+        user.admin = user_attributes[:admin] if user_attributes[:admin].present?
         Redmine::OmniAuthSAML.on_login_callback&.call(omniauth, user)
       end
       user
