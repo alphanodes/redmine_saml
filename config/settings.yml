@@ -1,0 +1,4 @@
+enabled: 1
+label_login_with_saml: ''
+onthefly_creation: 0
+replace_redmine_login: 0

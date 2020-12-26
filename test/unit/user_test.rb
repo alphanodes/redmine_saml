@@ -1,42 +1,44 @@
-require File.expand_path('../test_helper', __dir__)
+require File.expand_path '../../test_helper', __FILE__
 
-class UserPatchTest < RedmineOmniauthSaml::TestCase
+class UserTest < RedmineSAML::TestCase
   setup do
     prepare_tests
   end
 
   context 'User#find_or_create_from_omniauth' do
     should 'find created user' do
-      u = User.new(firstname: 'name',
+      login_name = 'mylogin'
+      u = User.new firstname: 'name',
                    lastname: 'last',
                    mail: 'mail@example.net',
-                   admin: false)
-      u.login = 'login'
-      assert u.save
-      assert_not_nil User.find_or_create_from_omniauth(login: 'login')
+                   login: login_name,
+                   admin: false
+
+      assert_save u
+      assert_not_nil User.find_or_create_from_omniauth(saml_login: login_name)
     end
 
     context 'onthefly_creation? disabled' do
       setup do
-        Setting['plugin_redmine_omniauth_saml']['onthefly_creation'] = false
+        change_saml_settings onthefly_creation: 0
       end
 
       should 'return nil when user not exists' do
-        assert_nil User.find_or_create_from_omniauth(login: 'not_existent')
+        assert_nil User.find_or_create_from_omniauth(saml_login: 'not_existent')
       end
     end
 
-    context 'onthefly_creatio? enabled' do
+    context 'onthefly_creation? enabled' do
       setup do
-        Setting['plugin_redmine_omniauth_saml']['onthefly_creation'] = true
+        change_saml_settings onthefly_creation: 1
       end
 
       should 'return created user' do
-        new = User.find_or_create_from_omniauth(login: 'new',
+        new = User.find_or_create_from_omniauth saml_login: 'new',
                                                 first_name: 'first name',
                                                 last_name: 'last name',
                                                 mail: 'new@example.com',
-                                                admin: false)
+                                                admin: false
         assert_not_nil new
         assert_in_delta Time.zone.now, new.created_on, 1
       end
@@ -44,18 +46,20 @@ class UserPatchTest < RedmineOmniauthSaml::TestCase
 
     context 'different attribute mappings' do
       setup do
-        Setting['plugin_redmine_omniauth_saml']['onthefly_creation'] = true
+        change_saml_settings onthefly_creation: 1
       end
 
       should 'map single level attribute' do
-        attributes = { login: 'new',
+        attributes = { saml_login: 'new',
                        first_name: 'first name',
                        last_name: 'last name',
                        mail: 'new@example.com',
                        admin: false }
+
         new = User.find_or_create_from_omniauth attributes
+
         assert_not_nil new
-        assert_equal attributes[:login], new.login
+        assert_equal attributes[:saml_login], new.login
         assert_equal attributes[:first_name], new.firstname
         assert_equal attributes[:last_name], new.lastname
         assert_equal attributes[:mail], new.mail
@@ -63,11 +67,11 @@ class UserPatchTest < RedmineOmniauthSaml::TestCase
       end
 
       should 'map nested levels attributes' do
-        Redmine::OmniAuthSAML.configured_saml[:attribute_mapping] = { login: 'one.two.three.four.levels.username',
-                                                                      firstname: 'one.two.three.four.levels.first_name',
-                                                                      lastname: 'one.two.three.four.levels.last_name',
-                                                                      mail: 'one.two.three.four.levels.personal_email',
-                                                                      admin: 'one.two.three.four.levels.is_admin' }
+        RedmineSAML.configured_saml[:attribute_mapping] = { login: 'one|two|three|four|levels|username',
+                                                            firstname: 'one|two|three|four|levels|first_name',
+                                                            lastname: 'one|two|three|four|levels|last_name',
+                                                            mail: 'one|two|three|four|levels|personal_email',
+                                                            admin: 'one|two|three|four|levels|is_admin' }
 
         real_att = { 'username' => 'new',
                      'first_name' => 'first name',

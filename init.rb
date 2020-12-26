@@ -1,24 +1,24 @@
-require_dependency 'redmine_omniauth_saml'
+require_dependency 'redmine_saml'
 
-Redmine::Plugin.register :redmine_omniauth_saml do
-  name 'Redmine Omniauth SAML plugin'
+Redmine::Plugin.register :redmine_saml do
+  name 'Redmine SAML'
   description 'This plugin adds Omniauth SAML support to Redmine.'
-  author 'Christian A. Rodriguez, Alexander Meindl'
-  url 'https://github.com/alexandermeindl/redmine_omniauth_saml'
-  version '0.9.11'
-  requires_redmine version_or_higher: '4.0'
-  settings default: { 'enabled' => 'true', 'label_login_with_saml' => '', 'replace_redmine_login' => false },
-           partial: 'settings/omniauth_saml/omniauth_saml'
+  author 'AlphaNodes GmbH'
+  author_url 'https://alphanodes.com/'
+  url 'https://github.com/alphanodes/redmine_saml'
+  version RedmineSAML::VERSION
+  requires_redmine version_or_higher: '4.1'
+
+  settings default: Additionals.load_settings('redmine_saml'),
+           partial: 'saml/settings/saml'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '2.0.23'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
 end
 
-if ActiveRecord::Base.connection.table_exists?(:settings)
-  Rails.configuration.to_prepare do
-    Redmine::OmniAuthSAML.setup
-  end
+Rails.configuration.to_prepare do
+  RedmineSAML.setup
 end

@@ -1,4 +1,4 @@
-Redmine::OmniAuthSAML::Base.configure do |config|
+RedmineSAML::Base.configure do |config|
   config.saml = {
     # OmniAuth callback URL
     assertion_consumer_service_url: 'http://redmine.example.com/auth/saml/callback',
@@ -20,11 +20,17 @@ Redmine::OmniAuthSAML::Base.configure do |config|
     name_identifier_value: 'mail',
     attribute_mapping: {
       # How will we map attributes from SSO to redmine attributes
-      login: 'extra.raw_info.username',
-      mail: 'extra.raw_info.email',
-      firstname: 'extra.raw_info.firstname',
-      lastname: 'extra.raw_info.firstname',
-      admin: 'extra.raw_info.admin'
+      # using either urn:oid:identifier, or friendly names, e.g.
+      # mail: 'extra|raw_info|urn:oid:0.9.2342.19200300.100.1.3'
+      # or
+      # mail: 'extra|raw_info|email'
+      #
+      # Edit defaults below to match your attributes
+      login: 'extra|raw_info|username',
+      mail: 'extra|raw_info|email',
+      firstname: 'extra|raw_info|firstname',
+      lastname: 'extra|raw_info|firstname',
+      admin: 'extra|raw_info|admin'
     }
   }
 

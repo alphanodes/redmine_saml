@@ -1,4 +1,4 @@
-require File.expand_path('../../test_helper', __FILE__)
+require File.expand_path '../../test_helper', __FILE__
 
 class AccountHelperTest < Redmine::HelperTest
   include OmniauthSamlAccountHelper
@@ -7,7 +7,7 @@ class AccountHelperTest < Redmine::HelperTest
   context '#label_for_saml_login' do
     should 'use label_login_with_saml plugin setting if not blank' do
       label = 'Login with SSO'
-      Setting['plugin_redmine_omniauth_saml']['label_login_with_saml'] = label
+      change_saml_settings label_login_with_saml: label
       assert_equal label, label_for_saml_login
     end
 

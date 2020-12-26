@@ -1,0 +1,5 @@
+# = Redmine configuration file
+
+# default configuration options for all environments
+default:
+  sudo_mode: false

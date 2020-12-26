@@ -1,27 +1,37 @@
-# Load the normal Rails helper
-require File.expand_path(File.dirname(__FILE__) + '/../../../test/test_helper')
+$VERBOSE = nil
 
-module RedmineOmniauthSaml
+require File.expand_path "#{File.dirname __FILE__}/../../../test/test_helper"
+
+module RedmineSAML
   module TestHelper
     def attribute_mapping_mock
-      { 'login' => 'login',
-        'firstname' => 'first_name',
-        'lastname' => 'last_name',
-        'mail' => 'mail',
-        'admin' => 'admin' }
+      { login: 'saml_login',
+        firstname: 'first_name',
+        lastname: 'last_name',
+        mail: 'mail',
+        admin: 'admin' }
     end
 
     def prepare_tests
-      Setting['plugin_redmine_omniauth_saml']['enabled'] = true
-      Redmine::OmniAuthSAML.configured_saml[:attribute_mapping] = attribute_mapping_mock
+      change_saml_settings enabled: 1
+      RedmineSAML.configured_saml[:attribute_mapping] = attribute_mapping_mock
+    end
+
+    def change_saml_settings(settings)
+      @saved_settings = Setting.plugin_redmine_saml.dup
+      new_settings = Setting.plugin_redmine_saml.dup
+      settings.each do |key, value|
+        new_settings[key] = value
+      end
+      Setting.plugin_redmine_saml = new_settings
     end
   end
 
   class ControllerTest < Redmine::ControllerTest
-    include RedmineOmniauthSaml::TestHelper
+    include RedmineSAML::TestHelper
   end
 
   class TestCase < ActiveSupport::TestCase
-    include RedmineOmniauthSaml::TestHelper
+    include RedmineSAML::TestHelper
   end
 end

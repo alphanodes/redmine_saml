@@ -1,0 +1,6 @@
+- if RedmineSAML.enabled?
+  - content_for :header_tags do
+    = stylesheet_link_tag 'login', plugin: 'redmine_saml'
+  #saml-login
+    = link_to label_for_saml_login,
+              login_with_saml_redirect_path(provider: 'saml', origin: back_url)

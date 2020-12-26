@@ -1,0 +1,49 @@
+h3 = l :label_information_plural
+
+table.list.saml-config
+  thead
+    tr
+      th = l :field_name
+      th = l :field_value
+  tbody
+    - RedmineSAML.configured_saml.each do |key, config|
+      tr
+        td.name = key
+        td.value = config
+
+em.info
+  = link_to 'See documentation for more information', 'https://github.com/omniauth/omniauth-saml#options', class: 'external'
+em.info
+  = link_to 'SAML Online Tools', 'https://www.samltool.com/online_tools.php', class: 'external'
+
+br
+
+- if @settings['enabled']
+  h3
+    = l :label_saml_test_plural
+
+  ul
+    li
+      = link_to metadata_saml_path, metadata_saml_url
+      ' :
+      = link_to RedmineSAML.configured_saml[:issuer], RedmineSAML.configured_saml[:issuer]
+      '
+      = saml_url_validate_test RedmineSAML.configured_saml[:issuer], metadata_saml_url
+    li
+      = link_to login_with_saml_callback_path(provider: 'saml'),
+                login_with_saml_callback_url(provider: 'saml')
+      ' :
+      = link_to RedmineSAML.configured_saml[:assertion_consumer_service_url],
+                RedmineSAML.configured_saml[:assertion_consumer_service_url]
+      '
+      = saml_url_validate_test RedmineSAML.configured_saml[:assertion_consumer_service_url],
+                               login_with_saml_callback_url(provider: 'saml')
+    li
+      = link_to redirect_after_saml_logout_path(provider: 'saml'),
+                redirect_after_saml_logout_url(provider: 'saml')
+      ' :
+      = link_to RedmineSAML.configured_saml[:single_logout_service_url],
+                RedmineSAML.configured_saml[:single_logout_service_url]
+      '
+      = saml_url_validate_test RedmineSAML.configured_saml[:single_logout_service_url],
+                               redirect_after_saml_logout_url(provider: 'saml')
