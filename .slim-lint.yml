@@ -38,3 +38,4 @@ linters:
       - Style/IfUnlessModifier
       - Style/Next
       - Style/WhileUntilModifier
+      - Layout/SpaceBeforeBrackets

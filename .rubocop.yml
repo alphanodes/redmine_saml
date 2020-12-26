@@ -79,3 +79,7 @@ Naming/VariableNumber:
   Enabled: true
   Exclude:
     - 'test/**/*'
+
+Layout/SpaceBeforeBrackets:
+  Enabled: false
+
