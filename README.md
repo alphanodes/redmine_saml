@@ -2,8 +2,7 @@
 
 This plugins adds SAML authentication support for [Redmine](https://www.redmine.org) based on [OmniAuth authentication framework](https://github.com/omniauth/omniauth).
 
-[![Run Linters](../../workflows/Run%20Linters/badge.svg)](../../actions?query=workflow%3A%22Run+Linters%22) [![Run Brakeman](../../workflows/Run%20Brakeman/badge.svg)](../../
-/actions?query=workflow%3A%22Run+Brakeman%22) [![Run Tests](../../workflows/Tests/badge.svg)](../../actions?query=workflow%3ATests)
+[![Run Linters](../../workflows/Run%20Linters/badge.svg)](../../actions?query=workflow%3A%22Run+Linters%22) [![Run Brakeman](../../workflows/Run%20Brakeman/badge.svg)](../../actions?query=workflow%3A%22Run+Brakeman%22) [![Run Tests](../../workflows/Tests/badge.svg)](../../actions?query=workflow%3ATests)
 
 ## Install
 
@@ -25,3 +24,12 @@ Finaly you need to configure some minor options for the plugin to work, in "Admi
 ## Support & contribution
 
 If you have any wishes or improvements, PRs are welcome!
+
+## Credits
+
+Its a fork of
+
+* <https://github.com/chrodriguez/redmine_omniauth_saml>
+* <https://github.com/jbbarth/redmine_omniauth_cas>
+
+Many thanks to them!
