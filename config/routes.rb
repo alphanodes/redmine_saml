@@ -10,8 +10,4 @@ Rails.application.routes.draw do
   match '/auth/:provider/sls' => 'account#redirect_after_saml_logout',
         as: :redirect_after_saml_logout,
         via: %i[get post]
-
-  resource :saml, only: [] do
-    get :metadata, on: :collection
-  end
 end

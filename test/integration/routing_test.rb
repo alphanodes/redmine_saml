@@ -12,6 +12,5 @@ class RoutingTest < Redmine::RoutingTest
   test 'routing saml' do
     should_route 'GET /auth/failure' => 'account#login_with_saml_failure'
     should_route 'GET /auth/blah/sls' => 'account#redirect_after_saml_logout', provider: 'blah'
-    should_route 'GET /saml/metadata' => 'samls#metadata'
   end
 end

@@ -1,6 +1,8 @@
 require 'redmine_saml/version'
 
 module RedmineSAML
+  METADATA_PATH = '/auth/saml/metadata'.freeze
+
   class << self
     def setup
       User.include RedmineSAML::Patches::UserPatch

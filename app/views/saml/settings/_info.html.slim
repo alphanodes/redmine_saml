@@ -23,12 +23,15 @@ br
     = l :label_saml_test_plural
 
   ul
+    - saml_metadata_path = "#{Setting.protocol}://#{Setting.host_name}#{RedmineSAML::METADATA_PATH}"
     li
-      = link_to metadata_saml_path, metadata_saml_url
+      = link_to RedmineSAML::METADATA_PATH, saml_metadata_path
       ' :
       = link_to RedmineSAML.configured_saml[:issuer], RedmineSAML.configured_saml[:issuer]
       '
-      = saml_url_validate_test RedmineSAML.configured_saml[:issuer], metadata_saml_url
+      = saml_url_validate_test RedmineSAML.configured_saml[:issuer],
+                               saml_metadata_path
+
     li
       = link_to login_with_saml_callback_path(provider: 'saml'),
                 login_with_saml_callback_url(provider: 'saml')
