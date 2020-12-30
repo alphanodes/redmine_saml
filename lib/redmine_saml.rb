@@ -88,6 +88,8 @@ module RedmineSAML
       end
 
       def user_attributes_from_saml(omniauth)
+        Additionals.debug "omniauth: #{omniauth.inspect}"
+
         HashWithIndifferentAccess.new.tap do |h|
           required_attribute_mapping.each do |symbol|
             key = configured_saml[:attribute_mapping][symbol]
