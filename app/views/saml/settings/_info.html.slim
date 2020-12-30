@@ -24,12 +24,12 @@ em.info
             class: 'external'
 em.info
   = link_to 'SAML Online Tools',
-    'https://www.samltool.com/online_tools.php',
-    class: 'external'
+            'https://www.samltool.com/online_tools.php',
+            class: 'external'
 
 br
 
-- if @settings['enabled']
+- if @settings[:enabled]
   h3
     = l :label_saml_test_plural
 
