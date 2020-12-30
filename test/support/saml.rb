@@ -5,8 +5,8 @@ RedmineSAML::Base.configure do |config|
     idp_slo_target_url: 'https://adfs.myserver.com/adfs/ls/?wa=wsignout1.0',
     idp_sso_target_url: 'https://adfs.myserver.com/adfs/ls',
     issuer: 'http://localhost/auth/saml/metadata',
-    name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:email',
-    name_identifier_value: 'email',
+    name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
+    name_identifier_value: 'mail',
     single_logout_service_url: 'http://localhost/auth/saml/sls',
     attribute_mapping: {
       username: 'extra|raw_info|NameID',

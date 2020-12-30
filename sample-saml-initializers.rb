@@ -7,15 +7,15 @@ RedmineSAML::Base.configure do |config|
     # The SLS (logout) callback URL
     single_logout_service_url: 'http://redmine.example.com/auth/saml/sls',
     # SSO login endpoint
-    idp_sso_target_url: 'http://sso.desarrollo.unlp.edu.ar/saml2/idp/SSOService.php',
+    idp_sso_target_url: 'https://sso.desarrollo.unlp.edu.ar/saml2/idp/SSOService.php',
     # SSO ssl certificate fingerprint
     idp_cert_fingerprint: 'certificate fingerprint',
     # Alternatively, specify the full certifiate:
     # idp_cert: '-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----',
     name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
     # Optional signout URL, not supported by all identity providers
-    signout_url: 'http://sso.example.com/saml2/idp/SingleLogoutService.php?ReturnTo=',
-    idp_slo_target_url: 'http://sso.example.com/saml2/idp/SingleLogoutService.php',
+    signout_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php?ReturnTo=',
+    idp_slo_target_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php',
     # Which redmine field is used as name_identifier_value for SAML logout
     name_identifier_value: 'mail',
     attribute_mapping: {
