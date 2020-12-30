@@ -10,11 +10,11 @@ table.list.saml-config
       tr
         td.name = key
         td.value style="text-align: left;"
-          ul
           - if config.is_a? Hash
-            - config.each do |config_key, config_value|
-              li
-                = "#{config_key}: #{config_value}"
+            ul.reporting-list
+              - config.each do |config_key, config_value|
+                li
+                  = "#{config_key}: #{config_value}"
           - else
             = config
 
