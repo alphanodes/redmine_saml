@@ -9,12 +9,23 @@ table.list.saml-config
     - RedmineSAML.configured_saml.each do |key, config|
       tr
         td.name = key
-        td.value = config
+        td.value style="text-align: left;"
+          ul
+          - if config.is_a? Hash
+            - config.each do |config_key, config_value|
+              li
+                = "#{config_key}: #{config_value}"
+          - else
+            = config
 
 em.info
-  = link_to 'See documentation for more information', 'https://github.com/omniauth/omniauth-saml#options', class: 'external'
+  = link_to 'See documentation for more information',
+            'https://github.com/omniauth/omniauth-saml#options',
+            class: 'external'
 em.info
-  = link_to 'SAML Online Tools', 'https://www.samltool.com/online_tools.php', class: 'external'
+  = link_to 'SAML Online Tools',
+    'https://www.samltool.com/online_tools.php',
+    class: 'external'
 
 br
 
