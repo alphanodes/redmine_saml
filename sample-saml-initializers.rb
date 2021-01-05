@@ -18,6 +18,8 @@ RedmineSAML::Base.configure do |config|
     idp_slo_target_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php',
     # Which redmine field is used as name_identifier_value for SAML logout
     name_identifier_value: 'mail',
+    # overwrite mapping seperator, if required
+    # attribute_mapping_sep: '|',
     attribute_mapping: {
       # How will we map attributes from SSO to redmine attributes
       # using either urn:oid:identifier, or friendly names, e.g.

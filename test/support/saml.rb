@@ -8,6 +8,7 @@ RedmineSAML::Base.configure do |config|
     name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
     name_identifier_value: 'mail',
     single_logout_service_url: 'http://localhost/auth/saml/sls',
+    attribute_mapping_sep: '|',
     attribute_mapping: {
       username: 'extra|raw_info|NameID',
       login: 'extra|raw_info|username',

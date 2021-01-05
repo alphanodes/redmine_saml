@@ -87,14 +87,18 @@ module RedmineSAML
         validate_configuration!
       end
 
+      def attribute_mapping_sep
+        configured_saml[:attribute_mapping_sep].presence || '|'
+      end
+
       def user_attributes_from_saml(omniauth)
         Additionals.debug "omniauth: #{omniauth.inspect}"
 
         HashWithIndifferentAccess.new.tap do |h|
           required_attribute_mapping.each do |symbol|
             key = configured_saml[:attribute_mapping][symbol]
-            # binding.pry
-            h[symbol] = key.split('|') # Get an array with nested keys: name|first will return [name, first]
+            # Get an array with nested keys: name|first will return [name, first]
+            h[symbol] = key.split(attribute_mapping_sep)
                            .map { |x| [:[], x.to_sym] } # Create pair elements being :[] symbol and the key
                            .inject(omniauth.deep_symbolize_keys) do |hash, params|
                              hash&.send(*params) # For each key, apply method :[] with key as parameter
