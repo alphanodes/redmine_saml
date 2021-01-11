@@ -10,7 +10,7 @@ module RedmineSAML
       class_methods do
         def find_or_create_from_omniauth(omniauth)
           user_attributes = RedmineSAML.user_attributes_from_saml omniauth
-          Additionals.debug "user_attributes: #{user_attributes.inspect}"
+          # Additionals.debug "user_attributes: #{user_attributes.inspect}"
 
           user = nil
           user = find_by_login(user_attributes[:login]) if user_attributes[:login].present? # rubocop:disable Rails/DynamicFindBy
