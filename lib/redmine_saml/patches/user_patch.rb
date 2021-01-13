@@ -26,9 +26,12 @@ module RedmineSAML
             user.reload
           end
 
-          user.firstname = user_attributes[:firstname] if user_attributes[:firstname].present?
-          user.lastname = user_attributes[:lastname] if user_attributes[:lastname].present?
-          user.admin = user_attributes[:admin] if user_attributes[:admin].present?
+          unless user.nil?
+            user.firstname = user_attributes[:firstname] if user_attributes[:firstname].present?
+            user.lastname = user_attributes[:lastname] if user_attributes[:lastname].present?
+            user.admin = user_attributes[:admin] if user_attributes[:admin].present?
+          end
+
           RedmineSAML.on_login_callback&.call omniauth, user
 
           user
