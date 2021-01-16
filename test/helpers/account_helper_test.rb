@@ -4,15 +4,15 @@ class AccountHelperTest < Redmine::HelperTest
   include OmniauthSamlAccountHelper
   include Redmine::I18n
 
-  context '#label_for_saml_login' do
-    should 'use label_login_with_saml plugin setting if not blank' do
+  context '#saml_login_label' do
+    should 'use saml_login_label plugin setting if not blank' do
       label = 'Login with SSO'
-      change_saml_settings label_login_with_saml: label
-      assert_equal label, label_for_saml_login
+      change_saml_settings saml_login_label: label
+      assert_equal label, saml_login_label
     end
 
-    should 'default to localized :label_login_with_saml if no setting present' do
-      assert_equal l(:label_login_with_saml), label_for_saml_login
+    should 'default to localized :saml_login_label if no setting present' do
+      assert_equal l(:saml_login_label), saml_login_label
     end
   end
 end

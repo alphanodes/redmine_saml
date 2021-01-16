@@ -26,7 +26,7 @@ module RedmineSAML
     end
 
     def enabled?
-      setting? :enabled
+      setting? :saml_enabled
     end
 
     def onthefly_creation?
@@ -37,8 +37,8 @@ module RedmineSAML
       setting? :replace_redmine_login
     end
 
-    def label_login_with_saml
-      setting :label_login_with_saml
+    def saml_login_label
+      setting :saml_login_label
     end
 
     def user_attributes_from_saml(omniauth)

@@ -13,7 +13,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
     context 'OmniAuth SAML strategy' do
       setup do
         Setting.default_language = 'en'
-        change_saml_settings enabled: 1,
+        change_saml_settings saml_enabled: 1,
                              onthefly_creation: 0
 
         OmniAuth.config.test_mode = true

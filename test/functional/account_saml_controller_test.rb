@@ -15,11 +15,11 @@ class AccountSamlControllerTest < RedmineSAML::ControllerTest
 
   context 'GET /login SAML button' do
     should "show up only if there's a plugin setting for SAML URL" do
-      change_saml_settings enabled: 0
+      change_saml_settings saml_enabled: 0
       get :login
       assert_select '#saml-login', 0
 
-      change_saml_settings enabled: 1
+      change_saml_settings saml_enabled: 1
       get :login
       assert_select '#saml-login'
     end

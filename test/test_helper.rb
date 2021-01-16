@@ -13,7 +13,7 @@ module RedmineSAML
     end
 
     def prepare_tests
-      change_saml_settings enabled: 1
+      change_saml_settings saml_enabled: 1
       RedmineSAML.configured_saml[:attribute_mapping] = attribute_mapping_mock
     end
 

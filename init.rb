@@ -9,14 +9,14 @@ Redmine::Plugin.register :redmine_saml do
   version RedmineSAML::VERSION
   requires_redmine version_or_higher: '4.1'
 
-  settings default: Additionals.load_settings('redmine_saml'),
-           partial: 'saml/settings/saml'
-
   begin
     requires_redmine_plugin :additionals, version_or_higher: '3.0'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
+
+  settings default: Additionals.load_settings('redmine_saml'),
+           partial: 'saml/settings/saml'
 end
 
 Rails.configuration.to_prepare do

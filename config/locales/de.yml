@@ -1,10 +1,10 @@
 de:
   error_saml_invalid_ticket: Ungültiges SAML Ticket
-  label_login_page_text: Anmeldeseite Text
-  label_login_with_saml: Mit SSO anmelden
   label_onthefly_creation: Benutzer automatisch anlegen?
   label_replace_redmine_login: Redmine Anmeldeseite ersetzen
   label_saml_enabled: SAML Authentifizierung aktivieren
+  label_saml_login_label: Anmeldeseite Text
   label_saml_test_plural: Tests
+  saml_login_label: Mit SSO anmelden
   text_full_logout_proposal: You may want to %{value} before trying an other username.
   text_logout_from_saml: SSO Sitzung schliessen
