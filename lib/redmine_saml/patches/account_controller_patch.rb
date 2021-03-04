@@ -27,6 +27,7 @@ module RedmineSAML
 
         def login_with_saml_callback
           auth = request.env['omniauth.auth']
+          Rails.logger.info "login_with_saml_callback: #{auth.inspect}"
           user = User.find_or_create_from_omniauth auth
 
           # taken from original AccountController
@@ -60,6 +61,7 @@ module RedmineSAML
         def login_with_saml_failure
           error = params[:message] || 'unknown'
           error = "error_saml_#{error}"
+          Rails.logger.warn "login_with_saml_failure: #{error}"
           if RedmineSAML.replace_redmine_login?
             render_error message: error.to_sym, status: 500
             false
