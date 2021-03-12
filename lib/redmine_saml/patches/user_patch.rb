@@ -17,6 +17,7 @@ module RedmineSAML
           user = EmailAddress.find_by(address: user_attributes[:mail]).try(:user) if user.nil?
 
           if user.nil? && RedmineSAML.onthefly_creation? && user_attributes[:mail].present?
+            Rails.logger.info "SAML onthefly user creation for: #{user_attributes[:mail]}"
             user = new user_attributes
             user.created_by_omniauth_saml = true
             user.login = user_attributes[:login].presence || user_attributes[:mail]
