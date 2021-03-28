@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   match '/auth/failure' => 'account#login_with_saml_failure',
         via: %i[get post]

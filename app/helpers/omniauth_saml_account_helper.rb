@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OmniauthSamlAccountHelper
   def saml_login_label
     RedmineSAML.saml_login_label.presence || l(:saml_login_label)

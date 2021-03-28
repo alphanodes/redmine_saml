@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RedmineSAML
   module Patches
     module SettingsControllerPatch

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path '../../test_helper', __FILE__
 
 class UserTest < RedmineSAML::TestCase
@@ -67,6 +69,7 @@ class UserTest < RedmineSAML::TestCase
       end
 
       should 'map nested levels attributes' do
+        RedmineSAML.configured_saml[:attribute_mapping_sep] = '|'
         RedmineSAML.configured_saml[:attribute_mapping] = { login: 'one|two|three|four|levels|username',
                                                             firstname: 'one|two|three|four|levels|first_name',
                                                             lastname: 'one|two|three|four|levels|last_name',
@@ -81,15 +84,15 @@ class UserTest < RedmineSAML::TestCase
 
         attributes = { 'one' => { 'two' => { 'three' => { 'four' => { 'levels' => real_att } } } } }
 
-        new = User.find_or_create_from_omniauth attributes
+        new_user = User.find_or_create_from_omniauth attributes
 
-        assert_not_nil new
+        assert_not_nil new_user
 
-        assert_equal real_att['username'], new.login
-        assert_equal real_att['first_name'], new.firstname
-        assert_equal real_att['last_name'], new.lastname
-        assert_equal real_att['personal_email'], new.mail
-        assert_equal real_att['is_admin'], new.admin
+        assert_equal real_att['username'], new_user.login
+        assert_equal real_att['first_name'], new_user.firstname
+        assert_equal real_att['last_name'], new_user.lastname
+        assert_equal real_att['personal_email'], new_user.mail
+        assert_equal real_att['is_admin'], new_user.admin
       end
     end
   end

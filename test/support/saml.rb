@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RedmineSAML::Base.configure do |config|
   config.saml = {
     assertion_consumer_service_url: 'http://localhost/auth/saml/callback',

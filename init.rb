@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'redmine_saml'
 
 Redmine::Plugin.register :redmine_saml do
@@ -10,7 +12,7 @@ Redmine::Plugin.register :redmine_saml do
   requires_redmine version_or_higher: '4.1'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.1'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end

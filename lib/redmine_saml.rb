@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'redmine_saml/version'
 
 module RedmineSAML
-  METADATA_PATH = '/auth/saml/metadata'.freeze
+  METADATA_PATH = '/auth/saml/metadata'
 
   class << self
     def setup

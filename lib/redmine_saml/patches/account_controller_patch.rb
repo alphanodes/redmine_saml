@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_dependency 'account_controller'
 
 module RedmineSAML
@@ -35,10 +37,10 @@ module RedmineSAML
             logger.warn "Failed login for '#{auth[:uid]}' from #{request.remote_ip} at #{Time.now.utc}"
             error = l :notice_account_invalid_credentials
             if RedmineSAML.enabled?
-              link = self.class.helpers.link_to(l(:text_logout_from_saml),
+              link = self.class.helpers.link_to l(:text_logout_from_saml),
                                                 saml_logout_url(home_url),
                                                 target: '_blank',
-                                                rel: 'noopener')
+                                                rel: 'noopener'
               error << ". #{l(:text_full_logout_proposal, value: link)}"
             end
             if RedmineSAML.replace_redmine_login?
@@ -59,8 +61,7 @@ module RedmineSAML
         end
 
         def login_with_saml_failure
-          error = params[:message] || 'unknown'
-          error = "error_saml_#{error}"
+          error = "error_saml_#{params[:message] || 'unknown'}"
           Rails.logger.warn "login_with_saml_failure: #{error}"
           if RedmineSAML.replace_redmine_login?
             render_error message: error.to_sym, status: 500
