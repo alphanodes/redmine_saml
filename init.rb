@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-raise "\n\033[31madditionals requires ruby 2.6 or newer. Please update your ruby version.\033[0m" if RUBY_VERSION < '2.6'
+raise "\n\033[31maredmine_saml requires ruby 2.6 or newer. Please update your ruby version.\033[0m" if RUBY_VERSION < '2.6'
 
 require_dependency 'redmine_saml'
 
