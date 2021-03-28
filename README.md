@@ -6,9 +6,9 @@ This plugins adds SAML authentication support for [Redmine](https://www.redmine.
 
 ## Requirements
 
--   Redmine `>= 4.1.0`
--   Ruby `>= 2.4.10`
--   Redmine plugins: [additionals](https://www.redmine.org/plugins/additionals)
+- Redmine `>= 4.1.0`
+- Ruby `>= 2.6
+- Redmine plugins: [additionals](https://www.redmine.org/plugins/additionals)
 
 ## Installing
 
@@ -46,7 +46,7 @@ If you have any wishes or improvements, PRs are welcome!
 
 Its a fork of
 
-* <https://github.com/chrodriguez/redmine_omniauth_saml>
-* <https://github.com/jbbarth/redmine_omniauth_cas>
+- <https://github.com/chrodriguez/redmine_omniauth_saml>
+- <https://github.com/jbbarth/redmine_omniauth_cas>
 
 Many thanks to them!

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path '../../test_helper', __FILE__
+require File.expand_path '../test_helper', __dir__
 
 # let's use the existing functional test so we don't have to re-setup everything
 # + we are sure that existing tests pass each time we run this file only

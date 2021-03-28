@@ -6,7 +6,7 @@ Rails:
   Enabled: true
 
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.6
   TargetRailsVersion: 5.2
   NewCops: enable
 
@@ -43,9 +43,6 @@ Rails/ApplicationRecord:
 Rails/CreateTableWithTimestamps:
   Enabled: false
 
-Rails/HelperInstanceVariable:
-  Enabled: false
-
 Rails/SkipsModelValidations:
   Enabled: false
 
@@ -56,9 +53,6 @@ Style/AutoResourceCleanup:
   Enabled: true
 
 Style/Documentation:
-  Enabled: false
-
-Style/ExpandPathArguments:
   Enabled: false
 
 Style/HashTransformKeys:
