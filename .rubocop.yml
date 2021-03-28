@@ -55,12 +55,6 @@ Style/AutoResourceCleanup:
 Style/Documentation:
   Enabled: false
 
-Style/HashTransformKeys:
-  Enabled: false
-
-Style/HashTransformValues:
-  Enabled: false
-
 Naming/FileName:
   Enabled: true
   Exclude:
@@ -70,7 +64,3 @@ Naming/VariableNumber:
   Enabled: true
   Exclude:
     - 'test/**/*'
-
-Layout/SpaceBeforeBrackets:
-  Enabled: false
-
