@@ -91,8 +91,6 @@ jobs:
       - name: Prepare Redmine source
         working-directory: redmine
         run: |
-          sed -i '/rubocop/d' Gemfile
-          rm -f .rubocop*
           cp plugins/redmine_saml/test/support/saml.rb config/initializers/
           cp plugins/redmine_saml/test/support/database-${{ matrix.db }}.yml config/database.yml
           cp plugins/redmine_saml/test/support/configuration.yml config/configuration.yml
