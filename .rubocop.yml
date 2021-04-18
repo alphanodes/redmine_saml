@@ -16,6 +16,10 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: false
 
+Metrics/ParameterLists:
+  Enabled: true
+  CountKeywordArgs: false
+
 Metrics/ClassLength:
   Enabled: false
 
@@ -49,8 +53,43 @@ Rails/SkipsModelValidations:
 Performance/ChainArrayAllocation:
   Enabled: true
 
+Style/ExpandPathArguments:
+  Enabled: true
+  Exclude:
+    - test/**/*
+
 Style/AutoResourceCleanup:
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  Exclude:
+    - '/**/*.rsb'
+
+Style/OptionHash:
+  Enabled: true
+  SuspiciousParamNames:
+    - options
+    - api_options
+    - opts
+    - args
+    - params
+    - parameters
+    - settings
+  Exclude:
+    - lib/redmine_saml/patches/*.rb
+
+Style/ReturnNil:
+  Enabled: true
+
+Style/UnlessLogicalOperators:
+  Enabled: true
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  AllowParenthesesInMultilineCall: true
+  AllowParenthesesInChaining: true
+  EnforcedStyle: omit_parentheses
 
 Style/Documentation:
   Enabled: false

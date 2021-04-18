@@ -5,3 +5,4 @@ tmp/
 Gemfile.lock
 .project
 .settings/
+.enable_dev

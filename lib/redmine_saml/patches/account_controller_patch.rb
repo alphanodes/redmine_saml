@@ -41,7 +41,7 @@ module RedmineSAML
                                                 saml_logout_url(home_url),
                                                 target: '_blank',
                                                 rel: 'noopener'
-              error << ". #{l(:text_full_logout_proposal, value: link)}"
+              error << ". #{l :text_full_logout_proposal, value: link}"
             end
             if RedmineSAML.replace_redmine_login?
               render_error message: error.html_safe, status: 403 # rubocop:disable Rails/OutputSafety
@@ -96,11 +96,11 @@ module RedmineSAML
         # Method to handle IdP initiated logouts
         def idp_logout_request
           settings = OneLogin::RubySaml::Settings.new omniauth_saml_settings
-          logout_request = OneLogin::RubySaml::SloLogoutrequest.new(params[:SAMLRequest])
+          logout_request = OneLogin::RubySaml::SloLogoutrequest.new params[:SAMLRequest]
           unless logout_request.is_valid?
             msg = 'IdP initiated LogoutRequest was not valid!'
             logger.error msg
-            return render_error(message: msg, status: 500)
+            return render_error message: msg, status: 500
           end
           logger.info "IdP initiated Logout for #{logout_request.name_id}"
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path '../test_helper', __dir__
+require File.expand_path '../../test_helper', __FILE__
 
 # let's use the existing functional test so we don't have to re-setup everything
 # + we are sure that existing tests pass each time we run this file only
@@ -65,7 +65,7 @@ class AccountSamlControllerTest < RedmineSAML::ControllerTest
 
       get :logout
       assert_response :redirect
-      assert_match(/#{Regexp.escape(RedmineSAML.configured_saml[:idp_slo_target_url])}.*http%3A%2F%2Ftest\.host%2F/,
+      assert_match(/#{Regexp.escape RedmineSAML.configured_saml[:idp_slo_target_url]}.*http%3A%2F%2Ftest\.host%2F/,
                    @response.redirect_url)
     end
   end

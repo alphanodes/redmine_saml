@@ -24,7 +24,7 @@ module RedmineSAML
     end
 
     def setting?(value)
-      Additionals.true?(settings[value])
+      Additionals.true? settings[value]
     end
 
     def enabled?
@@ -75,7 +75,7 @@ module RedmineSAML
       end
 
       def saml=(val)
-        @saml = HashWithIndifferentAccess.new(val)
+        @saml = HashWithIndifferentAccess.new val
       end
 
       def configured_saml
@@ -107,6 +107,12 @@ module RedmineSAML
                            end
           end
         end
+      end
+
+      def additionals_help_items
+        [{ title: 'OmniAuth SAML',
+           url: 'https://github.com/omniauth/omniauth-saml#omniauth-saml',
+           admin: true }]
       end
 
       private
