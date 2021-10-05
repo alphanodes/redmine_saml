@@ -15,7 +15,7 @@ module RedmineSAML
           # Additionals.debug "user_attributes: #{user_attributes.inspect}"
 
           user = nil
-          user = find_by_login user_attributes[:login] if user_attributes[:login].present? # rubocop:disable Rails/DynamicFindBy
+          user = find_by_login user_attributes[:login] if user_attributes[:login].present?
           user = EmailAddress.find_by(address: user_attributes[:mail]).try(:user) if user.nil?
 
           if user.nil? && RedmineSAML.onthefly_creation? && user_attributes[:mail].present?
