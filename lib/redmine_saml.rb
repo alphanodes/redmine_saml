@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'redmine_saml/version'
-
 module RedmineSAML
+  VERSION = '1.0.1'
   METADATA_PATH = '/auth/saml/metadata'
 
   class << self
@@ -11,7 +10,7 @@ module RedmineSAML
       AccountController.include RedmineSAML::Patches::AccountControllerPatch
       SettingsController.include RedmineSAML::Patches::SettingsControllerPatch
 
-      require_dependency 'redmine_saml/hooks'
+      RedmineSAML::Hooks
     end
 
     # support with default setting as fall back

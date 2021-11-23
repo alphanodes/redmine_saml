@@ -2,8 +2,6 @@
 
 raise "\n\033[31maredmine_saml requires ruby 2.6 or newer. Please update your ruby version.\033[0m" if RUBY_VERSION < '2.6'
 
-require_dependency 'redmine_saml'
-
 Redmine::Plugin.register :redmine_saml do
   name 'Redmine SAML'
   description 'This plugin adds Omniauth SAML support to Redmine.'
@@ -14,7 +12,7 @@ Redmine::Plugin.register :redmine_saml do
   requires_redmine version_or_higher: '4.1'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0.1'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.3'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
@@ -23,6 +21,8 @@ Redmine::Plugin.register :redmine_saml do
            partial: 'saml/settings/saml'
 end
 
-Rails.configuration.to_prepare do
-  RedmineSAML.setup
+if Rails.version > '6.0'
+  ActiveSupport.on_load(:active_record) { RedmineSAML.setup }
+else
+  Rails.configuration.to_prepare { RedmineSAML.setup }
 end
