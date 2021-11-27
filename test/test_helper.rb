@@ -2,7 +2,7 @@
 
 require File.expand_path "#{File.dirname __FILE__}/../../../test/test_helper"
 
-module RedmineSAML
+module RedmineSaml
   module TestHelper
     def attribute_mapping_mock
       { login: 'saml_login',
@@ -14,7 +14,7 @@ module RedmineSAML
 
     def prepare_tests
       change_saml_settings saml_enabled: 1
-      RedmineSAML.configured_saml[:attribute_mapping] = attribute_mapping_mock
+      RedmineSaml.configured_saml[:attribute_mapping] = attribute_mapping_mock
     end
 
     def change_saml_settings(settings)
@@ -28,10 +28,10 @@ module RedmineSAML
   end
 
   class ControllerTest < Redmine::ControllerTest
-    include RedmineSAML::TestHelper
+    include RedmineSaml::TestHelper
   end
 
   class TestCase < ActiveSupport::TestCase
-    include RedmineSAML::TestHelper
+    include RedmineSaml::TestHelper
   end
 end

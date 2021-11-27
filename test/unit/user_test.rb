@@ -2,7 +2,7 @@
 
 require File.expand_path '../../test_helper', __FILE__
 
-class UserTest < RedmineSAML::TestCase
+class UserTest < RedmineSaml::TestCase
   setup do
     prepare_tests
   end
@@ -69,8 +69,8 @@ class UserTest < RedmineSAML::TestCase
       end
 
       should 'map nested levels attributes' do
-        RedmineSAML.configured_saml[:attribute_mapping_sep] = '|'
-        RedmineSAML.configured_saml[:attribute_mapping] = { login: 'one|two|three|four|levels|username',
+        RedmineSaml.configured_saml[:attribute_mapping_sep] = '|'
+        RedmineSaml.configured_saml[:attribute_mapping] = { login: 'one|two|three|four|levels|username',
                                                             firstname: 'one|two|three|four|levels|first_name',
                                                             lastname: 'one|two|three|four|levels|last_name',
                                                             mail: 'one|two|three|four|levels|personal_email',

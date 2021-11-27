@@ -10,7 +10,7 @@ Redmine::Plugin.register :redmine_saml do
   author 'AlphaNodes GmbH'
   author_url 'https://alphanodes.com/'
   url 'https://github.com/alphanodes/redmine_saml'
-  version RedmineSAML::VERSION
+  version RedmineSaml::VERSION
   requires_redmine version_or_higher: '4.1'
 
   begin
@@ -24,5 +24,5 @@ Redmine::Plugin.register :redmine_saml do
 end
 
 AdditionalsLoader.to_prepare do
-  RedmineSAML.setup
+  RedmineSaml.setup
 end

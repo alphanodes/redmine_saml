@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RedmineSAML
+module RedmineSaml
   VERSION = '1.0.2'
   METADATA_PATH = '/auth/saml/metadata'
 
@@ -139,18 +139,18 @@ module RedmineSAML
            idp_slo_target_url
            name_identifier_value
            attribute_mapping].each do |k|
-          raise "RedmineSAML.configure requires saml.#{k} to be set" unless saml[k]
+          raise "RedmineSaml.configure requires saml.#{k} to be set" unless saml[k]
         end
 
         unless saml[:idp_cert_fingerprint] || saml[:idp_cert]
-          raise 'RedmineSAML.configure requires either saml.idp_cert_fingerprint or saml.idp_cert to be set'
+          raise 'RedmineSaml.configure requires either saml.idp_cert_fingerprint or saml.idp_cert to be set'
         end
 
         required_attribute_mapping.each do |k|
-          raise "RedmineSAML.configure requires saml.attribute_mapping[#{k}] to be set" unless saml[:attribute_mapping][k]
+          raise "RedmineSaml.configure requires saml.attribute_mapping[#{k}] to be set" unless saml[:attribute_mapping][k]
         end
 
-        raise 'RedmineSAML on_login must be a Proc only' if on_login_callback && !on_login_callback.is_a?(Proc)
+        raise 'RedmineSaml on_login must be a Proc only' if on_login_callback && !on_login_callback.is_a?(Proc)
 
         @validated_configuration = true
 
@@ -158,7 +158,7 @@ module RedmineSAML
       end
 
       def raise_configure_exception
-        raise 'RedmineSAML must be configured from an initializer. See README of redmine_saml for instructions'
+        raise 'RedmineSaml must be configured from an initializer. See README of redmine_saml for instructions'
       end
 
       def configure_omniauth_saml_middleware

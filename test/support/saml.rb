@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RedmineSAML::Base.configure do |config|
+RedmineSaml::Base.configure do |config|
   config.saml = {
     assertion_consumer_service_url: 'http://localhost/auth/saml/callback',
     idp_cert_fingerprint: '21:4D:FE:12:3A:83:69:A7:12:66:A4:B0:5D:E6:64:96:EF:26:07:2A',

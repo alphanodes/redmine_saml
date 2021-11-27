@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RedmineSAML
+module RedmineSaml
   module Patches
     module SettingsControllerPatch
       extend ActiveSupport::Concern

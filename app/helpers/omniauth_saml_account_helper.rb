@@ -2,7 +2,7 @@
 
 module OmniauthSamlAccountHelper
   def saml_login_label
-    RedmineSAML.saml_login_label.presence || l(:saml_login_label)
+    RedmineSaml.saml_login_label.presence || l(:saml_login_label)
   end
 
   def saml_url_validate_test(url1, url2)

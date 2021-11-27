@@ -2,7 +2,7 @@
 
 require_dependency 'account_controller'
 
-module RedmineSAML
+module RedmineSaml
   module Patches
     module AccountControllerPatch
       extend ActiveSupport::Concern
@@ -16,7 +16,7 @@ module RedmineSAML
 
       module InstanceOverwriteMethods
         def login
-          if RedmineSAML.enabled? && RedmineSAML.replace_redmine_login?
+          if RedmineSaml.enabled? && RedmineSaml.replace_redmine_login?
             redirect_to login_with_saml_redirect_path(provider: 'saml', origin: back_url)
           else
             super
@@ -36,14 +36,14 @@ module RedmineSAML
           if user.blank?
             logger.warn "Failed login for '#{auth[:uid]}' from #{request.remote_ip} at #{Time.now.utc}"
             error = l :notice_account_invalid_credentials
-            if RedmineSAML.enabled?
+            if RedmineSaml.enabled?
               link = self.class.helpers.link_to l(:text_logout_from_saml),
                                                 saml_logout_url(home_url),
                                                 target: '_blank',
                                                 rel: 'noopener'
               error << ". #{l :text_full_logout_proposal, value: link}"
             end
-            if RedmineSAML.replace_redmine_login?
+            if RedmineSaml.replace_redmine_login?
               render_error message: error.html_safe, status: 403 # rubocop:disable Rails/OutputSafety
               false
             else
@@ -63,7 +63,7 @@ module RedmineSAML
         def login_with_saml_failure
           error = "error_saml_#{params[:message] || 'unknown'}"
           Rails.logger.warn "login_with_saml_failure: #{error}"
-          if RedmineSAML.replace_redmine_login?
+          if RedmineSaml.replace_redmine_login?
             render_error message: error.to_sym, status: 500
             false
           else
@@ -73,7 +73,7 @@ module RedmineSAML
         end
 
         def logout
-          if RedmineSAML.enabled? && session[:logged_in_with_saml]
+          if RedmineSaml.enabled? && session[:logged_in_with_saml]
             do_logout_with_saml
           else
             super
@@ -181,15 +181,15 @@ module RedmineSAML
         end
 
         def name_identifier_value
-          User.current.send RedmineSAML.configured_saml[:name_identifier_value].to_sym
+          User.current.send RedmineSaml.configured_saml[:name_identifier_value].to_sym
         end
 
         def omniauth_saml_settings
-          RedmineSAML.configured_saml
+          RedmineSaml.configured_saml
         end
 
         def saml_logout_url(service = nil)
-          logout_uri = RedmineSAML.configured_saml[:signout_url]
+          logout_uri = RedmineSaml.configured_saml[:signout_url]
           logout_uri += service.to_s if logout_uri.present?
           logout_uri || home_url
         end

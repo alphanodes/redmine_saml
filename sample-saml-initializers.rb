@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RedmineSAML::Base.configure do |config|
+RedmineSaml::Base.configure do |config|
   config.saml = {
     # Redmine callback URL
     assertion_consumer_service_url: 'http://redmine.example.com/auth/saml/callback',

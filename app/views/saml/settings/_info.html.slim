@@ -6,7 +6,7 @@ table.list.saml-config
       th = l :field_name
       th = l :field_value
   tbody
-    - RedmineSAML.configured_saml.each do |key, config|
+    - RedmineSaml.configured_saml.each do |key, config|
       tr
         td.name = key
         td.value style="text-align: left;"
@@ -34,30 +34,30 @@ br
     = l :label_saml_test_plural
 
   ul
-    - saml_metadata_path = "#{Setting.protocol}://#{Setting.host_name}#{RedmineSAML::METADATA_PATH}"
+    - saml_metadata_path = "#{Setting.protocol}://#{Setting.host_name}#{RedmineSaml::METADATA_PATH}"
     li
-      = link_to RedmineSAML::METADATA_PATH, saml_metadata_path
+      = link_to RedmineSaml::METADATA_PATH, saml_metadata_path
       ' :
-      = link_to RedmineSAML.configured_saml[:issuer], RedmineSAML.configured_saml[:issuer]
+      = link_to RedmineSaml.configured_saml[:issuer], RedmineSaml.configured_saml[:issuer]
       '
-      = saml_url_validate_test RedmineSAML.configured_saml[:issuer],
+      = saml_url_validate_test RedmineSaml.configured_saml[:issuer],
                                saml_metadata_path
 
     li
       = link_to login_with_saml_callback_path(provider: 'saml'),
                 login_with_saml_callback_url(provider: 'saml')
       ' :
-      = link_to RedmineSAML.configured_saml[:assertion_consumer_service_url],
-                RedmineSAML.configured_saml[:assertion_consumer_service_url]
+      = link_to RedmineSaml.configured_saml[:assertion_consumer_service_url],
+                RedmineSaml.configured_saml[:assertion_consumer_service_url]
       '
-      = saml_url_validate_test RedmineSAML.configured_saml[:assertion_consumer_service_url],
+      = saml_url_validate_test RedmineSaml.configured_saml[:assertion_consumer_service_url],
                                login_with_saml_callback_url(provider: 'saml')
     li
       = link_to redirect_after_saml_logout_path(provider: 'saml'),
                 redirect_after_saml_logout_url(provider: 'saml')
       ' :
-      = link_to RedmineSAML.configured_saml[:single_logout_service_url],
-                RedmineSAML.configured_saml[:single_logout_service_url]
+      = link_to RedmineSaml.configured_saml[:single_logout_service_url],
+                RedmineSaml.configured_saml[:single_logout_service_url]
       '
-      = saml_url_validate_test RedmineSAML.configured_saml[:single_logout_service_url],
+      = saml_url_validate_test RedmineSaml.configured_saml[:single_logout_service_url],
                                redirect_after_saml_logout_url(provider: 'saml')

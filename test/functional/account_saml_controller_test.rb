@@ -6,7 +6,7 @@ require File.expand_path '../../test_helper', __FILE__
 # + we are sure that existing tests pass each time we run this file only
 require Rails.root.join('test/functional/account_controller_test')
 
-class AccountSamlControllerTest < RedmineSAML::ControllerTest
+class AccountSamlControllerTest < RedmineSaml::ControllerTest
   fixtures :users, :groups_users, :email_addresses, :user_preferences, :roles
 
   tests AccountController
@@ -59,13 +59,13 @@ class AccountSamlControllerTest < RedmineSAML::ControllerTest
     end
 
     should 'redirect to SAML logout if previously logged in with SAML' do
-      RedmineSAML.configured_saml[:signout_url] = 'https://saml.server/logout?return='
-      RedmineSAML.configured_saml[:idp_slo_target_url] = 'https://saml.server/ls/?wa=wsignout1'
+      RedmineSaml.configured_saml[:signout_url] = 'https://saml.server/logout?return='
+      RedmineSaml.configured_saml[:idp_slo_target_url] = 'https://saml.server/ls/?wa=wsignout1'
       session[:logged_in_with_saml] = true
 
       get :logout
       assert_response :redirect
-      assert_match(/#{Regexp.escape RedmineSAML.configured_saml[:idp_slo_target_url]}.*http%3A%2F%2Ftest\.host%2F/,
+      assert_match(/#{Regexp.escape RedmineSaml.configured_saml[:idp_slo_target_url]}.*http%3A%2F%2Ftest\.host%2F/,
                    @response.redirect_url)
     end
   end
