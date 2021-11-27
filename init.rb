@@ -19,12 +19,10 @@ Redmine::Plugin.register :redmine_saml do
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
 
-  settings default: Additionals.load_settings('redmine_saml'),
+  settings default: AdditionalsLoader.default_settings('redmine_saml'),
            partial: 'saml/settings/saml'
 end
 
-if Rails.version > '6.0'
-  ActiveSupport.on_load(:active_record) { RedmineSAML.setup }
-else
-  Rails.configuration.to_prepare { RedmineSAML.setup }
+AdditionalsLoader.to_prepare do
+  RedmineSAML.setup
 end

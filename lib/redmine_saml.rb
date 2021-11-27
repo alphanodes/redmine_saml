@@ -6,11 +6,18 @@ module RedmineSAML
 
   class << self
     def setup
-      User.include RedmineSAML::Patches::UserPatch
-      AccountController.include RedmineSAML::Patches::AccountControllerPatch
-      SettingsController.include RedmineSAML::Patches::SettingsControllerPatch
+      loader = AdditionalsLoader.new plugin_id: 'redmine_saml'
 
-      RedmineSAML::Hooks
+      # Patches
+      loader.add_patch %w[User
+                          AccountController
+                          SettingsController]
+
+      # Apply patches and helper
+      loader.apply!
+
+      # Hooks
+      loader.load_hooks!
     end
 
     # support with default setting as fall back
@@ -18,7 +25,7 @@ module RedmineSAML
       if settings.key? value
         settings[value]
       else
-        Additionals.load_settings('redmine_saml')[value]
+        AdditionalsLoader.default_settings('redmine_saml')[value]
       end
     end
 
