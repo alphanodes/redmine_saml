@@ -2,8 +2,6 @@
 
 raise "\n\033[31maredmine_saml requires ruby 2.6 or newer. Please update your ruby version.\033[0m" if RUBY_VERSION < '2.6'
 
-require 'redmine_saml'
-
 Redmine::Plugin.register :redmine_saml do
   name 'Redmine SAML'
   description 'This plugin adds Omniauth SAML support to Redmine.'

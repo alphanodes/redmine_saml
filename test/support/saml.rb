@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require Rails.root.join('plugins/redmine_saml/lib/redmine_saml')
+require Rails.root.join('plugins/redmine_saml/lib/redmine_saml/base')
+
 RedmineSaml::Base.configure do |config|
   config.saml = {
     assertion_consumer_service_url: 'http://localhost/auth/saml/callback',
