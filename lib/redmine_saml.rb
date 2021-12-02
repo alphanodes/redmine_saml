@@ -15,9 +15,6 @@ module RedmineSaml
 
       # Apply patches and helper
       loader.apply!
-
-      # Hooks
-      loader.load_hooks!
     end
 
     # support with default setting as fall back

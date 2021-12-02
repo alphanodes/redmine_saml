@@ -23,6 +23,5 @@ Redmine::Plugin.register :redmine_saml do
            partial: 'saml/settings/saml'
 end
 
-AdditionalsLoader.to_prepare do
-  RedmineSaml.setup
-end
+AdditionalsLoader.load_hooks! 'redmine_saml'
+AdditionalsLoader.to_prepare { RedmineSaml.setup } if Rails.version < '6.0'
