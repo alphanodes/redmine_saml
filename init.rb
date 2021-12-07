@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-raise "\n\033[31maredmine_saml requires ruby 2.6 or newer. Please update your ruby version.\033[0m" if RUBY_VERSION < '2.6'
+loader = RedminePluginKit::Loader.new plugin_id: 'redmine_saml'
 
 Redmine::Plugin.register :redmine_saml do
   name 'Redmine SAML'
@@ -12,14 +12,14 @@ Redmine::Plugin.register :redmine_saml do
   requires_redmine version_or_higher: '4.1'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0.3'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.4'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
 
-  settings default: AdditionalsLoader.default_settings('redmine_saml'),
+  settings default: loader.default_settings,
            partial: 'saml/settings/saml'
 end
 
-AdditionalsLoader.load_hooks! 'redmine_saml'
-AdditionalsLoader.to_prepare { RedmineSaml.setup } if Rails.version < '6.0'
+RedminePluginKit::Loader.persisting { loader.load_model_hooks! }
+RedminePluginKit::Loader.to_prepare { RedmineSaml.setup! } if Rails.version < '6.0'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 gem 'omniauth-saml', '~> 1.10.3'
+gem 'redmine_plugin_kit'
 
 group :test do
   gem 'shoulda'
