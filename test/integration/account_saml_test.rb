@@ -43,7 +43,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
 
       should 'update last_login_on field' do
         user = users :users_001
-        user.update_attribute :last_login_on, Time.zone.now - 6.hours
+        user.update_attribute :last_login_on, 6.hours.ago
         OmniAuth.config.mock_auth[:saml] = { 'saml_login' => 'admin' }
 
         get '/auth/saml/callback'
