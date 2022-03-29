@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RedmineSaml
-  VERSION = '1.0.3'
+  VERSION = '1.0.4'
   METADATA_PATH = '/auth/saml/metadata'
 
   include RedminePluginKit::PluginBase
