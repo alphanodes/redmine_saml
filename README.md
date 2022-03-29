@@ -6,8 +6,8 @@ This plugins adds SAML authentication support for [Redmine](https://www.redmine.
 
 ## Requirements
 
-- Redmine `>= 4.1.0`
-- Ruby `>= 2.6
+- Redmine `>= 5.0`
+- Ruby `>= 2.7
 - Redmine plugins: [additionals](https://www.redmine.org/plugins/additionals)
 
 ## Installing
