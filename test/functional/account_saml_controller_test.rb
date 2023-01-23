@@ -60,12 +60,12 @@ class AccountSamlControllerTest < RedmineSaml::ControllerTest
 
     should 'redirect to SAML logout if previously logged in with SAML' do
       RedmineSaml.configured_saml[:signout_url] = 'https://saml.server/logout?return='
-      RedmineSaml.configured_saml[:idp_slo_target_url] = 'https://saml.server/ls/?wa=wsignout1'
+      RedmineSaml.configured_saml[:idp_slo_service_url] = 'https://saml.server/ls/?wa=wsignout1'
       session[:logged_in_with_saml] = true
 
       get :logout
       assert_response :redirect
-      assert_match(/#{Regexp.escape RedmineSaml.configured_saml[:idp_slo_target_url]}.*http%3A%2F%2Ftest\.host%2F/,
+      assert_match(/#{Regexp.escape RedmineSaml.configured_saml[:idp_slo_service_url]}.*http%3A%2F%2Ftest\.host%2F/,
                    @response.redirect_url)
     end
   end
