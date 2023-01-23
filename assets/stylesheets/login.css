@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-#saml-login form button {
+#saml-login form button[type='submit'] {
   padding: 10px 20px 38px;
   color: #fff;
   background-color: #f17e32 !important;
@@ -14,10 +14,13 @@
   border: 10px solid #fff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
   font-size: larger;
+  background-image: none;
 }
 
-#saml-login form button:hover {
+#saml-login form button[type='submit']:hover {
   background-color: #e27126 !important;
+  box-shadow: none !important;
+  border-color: #fff;
 }
 
 #login-form table { margin-top: 2em; }
