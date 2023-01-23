@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-gem 'omniauth-saml'
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-saml'
 gem 'redmine_plugin_kit'
 
 group :test do
