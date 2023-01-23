@@ -2,6 +2,6 @@
   - content_for :header_tags do
     = stylesheet_link_tag 'login', plugin: 'redmine_saml'
   #saml-login
-    = link_to saml_login_label,
-              login_with_saml_redirect_path(provider: 'saml', origin: back_url),
-              method: :post
+    = form_with url: login_with_saml_redirect_path(provider: 'saml'), method: :post do |f|
+      = f.hidden_field :origin, value: back_url, id: nil
+      = f.button saml_login_label, type: 'submit'
