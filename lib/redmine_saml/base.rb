@@ -14,7 +14,7 @@ module RedmineSaml
       end
 
       def saml=(val)
-        @saml = HashWithIndifferentAccess.new val
+        @saml = ActiveSupport::HashWithIndifferentAccess.new val
       end
 
       def configured_saml
@@ -35,7 +35,7 @@ module RedmineSaml
       def user_attributes_from_saml(omniauth)
         Rails.logger.info "user_attributes_from_saml: #{omniauth.inspect}"
 
-        HashWithIndifferentAccess.new.tap do |h|
+        ActiveSupport::HashWithIndifferentAccess.new.tap do |h|
           required_attribute_mapping.each do |symbol|
             key = configured_saml[:attribute_mapping][symbol]
             # Get an array with nested keys: name|first will return [name, first]
@@ -66,10 +66,10 @@ module RedmineSaml
 
       def validate_configuration!
         %i[assertion_consumer_service_url
-           issuer
-           idp_sso_target_url
+           sp_entity_id
+           idp_slo_service_url
+           idp_sso_service_url
            name_identifier_format
-           idp_slo_target_url
            name_identifier_value
            attribute_mapping].each do |k|
           raise "RedmineSaml.configure requires saml.#{k} to be set" unless saml[k]

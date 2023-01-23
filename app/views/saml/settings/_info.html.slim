@@ -37,9 +37,9 @@ br
     li
       = link_to RedmineSaml::METADATA_PATH, saml_metadata_path
       ' :
-      = link_to RedmineSaml.configured_saml[:issuer], RedmineSaml.configured_saml[:issuer]
+      = link_to RedmineSaml.configured_saml[:sp_entity_id], RedmineSaml.configured_saml[:sp_entity_id]
       '
-      = saml_url_validate_test RedmineSaml.configured_saml[:issuer],
+      = saml_url_validate_test RedmineSaml.configured_saml[:sp_entity_id],
                                saml_metadata_path
 
     li

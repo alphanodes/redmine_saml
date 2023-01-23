@@ -12,7 +12,7 @@ Redmine::Plugin.register :redmine_saml do
   requires_redmine version_or_higher: '5.0'
 
   begin
-    requires_redmine_plugin :additionals, version_or_higher: '3.0.6'
+    requires_redmine_plugin :additionals, version_or_higher: '3.0.8'
   rescue Redmine::PluginNotFound
     raise 'Please install additionals plugin (https://github.com/alphanodes/additionals)'
   end
@@ -22,4 +22,3 @@ Redmine::Plugin.register :redmine_saml do
 end
 
 RedminePluginKit::Loader.persisting { loader.load_model_hooks! }
-RedminePluginKit::Loader.to_prepare { RedmineSaml.setup! } if Rails.version < '6.0'

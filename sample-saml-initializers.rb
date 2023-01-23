@@ -8,11 +8,11 @@ RedmineSaml::Base.configure do |config|
     # Redmine callback URL
     assertion_consumer_service_url: 'http://redmine.example.com/auth/saml/callback',
     # The issuer name / entity ID. Must be an URI as per SAML 2.0 spec.
-    issuer: 'http://redmine.example.com/auth/saml/metadata',
+    sp_entity_id: 'http://redmine.example.com/auth/saml/metadata',
     # The SLS (logout) callback URL
     single_logout_service_url: 'http://redmine.example.com/auth/saml/sls',
     # SSO login endpoint
-    idp_sso_target_url: 'https://sso.desarrollo.unlp.edu.ar/saml2/idp/SSOService.php',
+    idp_sso_service_url: 'https://sso.desarrollo.unlp.edu.ar/saml2/idp/SSOService.php',
     # SSO SSL certificate SHA-1 fingerprint
     idp_cert_fingerprint: 'certificate fingerprint',
     # Alternatively, specify the full certifiate:
@@ -20,7 +20,7 @@ RedmineSaml::Base.configure do |config|
     name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
     # Optional signout URL, not supported by all identity providers
     signout_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php?ReturnTo=',
-    idp_slo_target_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php',
+    idp_slo_service_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php',
     # Which redmine field is used as name_identifier_value for SAML logout
     name_identifier_value: 'mail',
     # overwrite mapping seperator, if required
