@@ -1,4 +1,5 @@
 es:
+  error_saml_authenticity_error: SAML authentication error
   error_saml_invalid_ticket: Invalid IDP cert fingerprint
   label_onthefly_creation: Crear usuarios automáticamente?
   label_replace_redmine_login: Reemplazar el login de Redmine

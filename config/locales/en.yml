@@ -1,4 +1,5 @@
 en:
+  error_saml_authenticity_error: SAML authentication error
   error_saml_invalid_ticket: Invalid SAML ticket
   label_onthefly_creation: Create users automatically?
   label_replace_redmine_login: Replace Redmine login page
