@@ -3,4 +3,5 @@
     = stylesheet_link_tag 'login', plugin: 'redmine_saml'
   #saml-login
     = link_to saml_login_label,
-              login_with_saml_redirect_path(provider: 'saml', origin: back_url)
+              login_with_saml_redirect_path(provider: 'saml', origin: back_url),
+              method: :post
