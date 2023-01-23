@@ -1,5 +1,5 @@
 de:
-  error_saml_authenticity_error: Ein SAML Authentifzierungs-Fehler ist aufgetreten
+  error_saml_authenticity_error: SAML Authentifzierungs-Fehler
   error_saml_invalid_ticket: Ungültiges SAML Ticket
   label_onthefly_creation: Benutzer automatisch anlegen?
   label_replace_redmine_login: Redmine Anmeldeseite ersetzen
