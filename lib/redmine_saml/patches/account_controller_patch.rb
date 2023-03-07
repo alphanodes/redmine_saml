@@ -51,7 +51,7 @@ module RedmineSaml
               redirect_to signin_url
             end
           else
-            user.update_attribute :last_login_on, Time.zone.now
+            user.update_column :last_login_on, Time.zone.now
             params[:back_url] = request.env['omniauth.origin'] if request.env['omniauth.origin'].present?
             successful_authentication user
 
