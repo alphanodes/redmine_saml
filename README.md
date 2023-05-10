@@ -12,7 +12,7 @@ This plugins adds SAML authentication support for [Redmine](https://www.redmine.
 
 ## Installing
 
-You can first take a look at general instructions for plugins [here](https://www.redmine.org/wiki/redmine/Plugins).
+You can first take a look at general instructions for plugins [here](https://www.redmine.org/projects/redmine/wiki/plugins).
 
 ```shell
 cd $REDMINE
