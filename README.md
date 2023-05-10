@@ -2,7 +2,7 @@
 
 This plugins adds SAML authentication support for [Redmine](https://www.redmine.org) based on [OmniAuth authentication framework](https://github.com/omniauth/omniauth) with [omniauth-saml](https://github.com/omniauth/omniauth-saml).
 
-[![Run Linters](../../workflows/Run%20Linters/badge.svg)](../../actions?query=workflow%3A%22Run+Linters%22) [![Run Brakeman](../../workflows/Run%20Brakeman/badge.svg)](../../actions?query=workflow%3A%22Run+Brakeman%22) [![Run Tests](../../workflows/Tests/badge.svg)](../../actions?query=workflow%3ATests)
+[![Run Linters](../../workflows/linters.yml/badge.svg)](../../workflows/linters.yml) [![Run Brakeman](../../workflows/brakeman.yml/badge.svg)](../../workflows/brakeman.yml) [![Tests](../../workflows/tests.yml/badge.svg)](../../workflows/tests.yml)
 
 ## Requirements
 
@@ -19,7 +19,7 @@ cd $REDMINE
 git clone https://github.com/alphanodes/additionals.git plugins/additionals
 git clone https://github.com/alphanodes/redmine_saml.git plugins/redmine_saml
 # copy configuration to config/initializers/ - could be any file name
-cp plugins/redmine_saml/sample-saml-initializers.rb config/initializers/saml.rb
+cp plugins/redmine_saml/contrib/sample_saml_initializers.rb config/initializers/saml.rb
 # make your saml configuration in this file!!!
 vim config/initializers/saml.rb
 bundle install
@@ -35,12 +35,14 @@ For more information about configuration options, see <https://github.com/omniau
 ```shell
 cd $REDMINE_ROOT
 bundle exec rake redmine:plugins:migrate NAME=redmine_saml VERSION=0 RAILS_ENV=production
-rm -rf plugins/redmine_saml
+rm -rf plugins/redmine_saml public/plugin_assets/redmine_saml
 ```
 
 ## Support & contribution
 
-If you have any wishes or improvements, PRs are welcome!
+If you have any wishes or improvements, PRs are welcome! If you have any wishes or improvements, PRs are welcome!
+
+We only provide commercial support by alphanodes.com for our hosting customers.
 
 ## Credits
 

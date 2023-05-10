@@ -16,7 +16,7 @@ RedmineSaml::Base.configure do |config|
     # SSO SSL certificate SHA-1 fingerprint
     idp_cert_fingerprint: 'certificate fingerprint',
     # Alternatively, specify the full certifiate:
-    # idp_cert: '-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----',
+    # idp_cert: "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
     name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
     # Optional signout URL, not supported by all identity providers
     signout_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php?ReturnTo=',
