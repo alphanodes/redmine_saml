@@ -1,6 +1,6 @@
 h3 = l :label_information_plural
 
-table.list.saml-config
+table.list.saml-config.autoscroll
   thead
     tr
       th = l :field_name
@@ -16,7 +16,7 @@ table.list.saml-config
                 li
                   = "#{config_key}: #{config_value}"
           - else
-            = config
+            = simple_format config, {}, wrapper_tag: 'div'
 
 em.info
   = link_to_external 'See documentation for more information',
