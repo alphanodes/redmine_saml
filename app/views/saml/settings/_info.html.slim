@@ -15,7 +15,7 @@ table.list.saml-config.autoscroll
               - config.each do |config_key, config_value|
                 li
                   = "#{config_key}: #{config_value}"
-          - if config.is_a? String
+          - elsif config.is_a? String
             = simple_format config, {}, wrapper_tag: 'div'
           - else
             = config
