@@ -6,11 +6,12 @@ require Rails.root.join('plugins/redmine_saml/lib/redmine_saml/base')
 RedmineSaml::Base.configure do |config|
   config.saml = {
     # Redmine callback URL
-    assertion_consumer_service_url: 'http://redmine.example.com/auth/saml/callback',
+    assertion_consumer_service_url: "http://redmine.example.com#{RedmineSaml::CALLBACK_PATH}",
     # The issuer name / entity ID. Must be an URI as per SAML 2.0 spec.
-    sp_entity_id: 'http://redmine.example.com/auth/saml/metadata',
+    # sp_entity_id: 'http://redmine.example.com/auth/saml/metadata' or
+    sp_entity_id: "http://redmine.example.com#{RedmineSaml::METADATA_PATH}",
     # The SLS (logout) callback URL
-    single_logout_service_url: 'http://redmine.example.com/auth/saml/sls',
+    single_logout_service_url: "http://redmine.example.com#{RedmineSaml::LOGOUT_SERVICE_PATH}",
     # SSO login endpoint
     idp_sso_service_url: 'https://sso.desarrollo.unlp.edu.ar/saml2/idp/SSOService.php',
     # SSO SSL certificate SHA-1 fingerprint

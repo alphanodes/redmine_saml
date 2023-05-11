@@ -2,7 +2,10 @@
 
 module RedmineSaml
   VERSION = '1.0.6'
+
   METADATA_PATH = '/auth/saml/metadata'
+  CALLBACK_PATH = '/auth/saml/callback'
+  LOGOUT_SERVICE_PATH = '/auth/saml/sls'
 
   include RedminePluginKit::PluginBase
 

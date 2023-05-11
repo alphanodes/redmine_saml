@@ -24,7 +24,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
       should 'authorize login if user exists with this login' do
         OmniAuth.config.mock_auth[:saml] = { 'saml_login' => 'admin' }
 
-        get '/auth/saml/callback'
+        get RedmineSaml::CALLBACK_PATH
         assert_redirected_to '/my/page'
 
         get '/my/page'
@@ -34,7 +34,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
       should 'authorize login if user exists with this mail' do
         OmniAuth.config.mock_auth[:saml] = { 'mail' => 'admin@somenet.foo' }
 
-        get '/auth/saml/callback'
+        get RedmineSaml::CALLBACK_PATH
         assert_redirected_to '/my/page'
 
         get '/my/page'
@@ -46,7 +46,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
         user.update_attribute :last_login_on, 6.hours.ago
         OmniAuth.config.mock_auth[:saml] = { 'saml_login' => 'admin' }
 
-        get '/auth/saml/callback'
+        get RedmineSaml::CALLBACK_PATH
         assert_redirected_to '/my/page'
         user.reload
         assert Time.zone.now - user.last_login_on < 30.seconds
@@ -54,7 +54,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
 
       should "refuse login if user doesn't exist" do
         OmniAuth.config.mock_auth[:saml] = { 'saml_login' => 'johndoe' }
-        get '/auth/saml/callback'
+        get RedmineSaml::CALLBACK_PATH
         assert_redirected_to '/login'
         follow_redirect!
         assert_equal User.anonymous, User.current
@@ -70,7 +70,7 @@ class AccountSAMLTest < Redmine::IntegrationTest
                                                'first_name' => 'first name',
                                                'last_name' => 'last name',
                                                'mail' => 'mail@example.com' }
-          get '/auth/saml/callback'
+          get RedmineSaml::CALLBACK_PATH
 
           assert_redirected_to '/my/page'
           follow_redirect!
