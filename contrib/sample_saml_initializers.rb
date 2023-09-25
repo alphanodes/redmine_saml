@@ -15,9 +15,13 @@ RedmineSaml::Base.configure do |config|
     # SSO login endpoint
     idp_sso_service_url: 'https://sso.desarrollo.unlp.edu.ar/saml2/idp/SSOService.php',
     # SSO SSL certificate SHA-1 fingerprint
+    # NOTE: only use idp_cert OR idp_cert_fingerprint (not both!)
     idp_cert_fingerprint: 'certificate fingerprint',
-    # Alternatively, specify the full certifiate:
-    # idp_cert: "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----",
+    # Alternatively, specify the full certifiate
+    # NOTE: only use idp_cert OR idp_cert_fingerprint (not both!)
+    idp_cert: '-----BEGIN CERTIFICATE-----
+CONTENT_OF_CERT_IN_ONE_LINE_WITHOUT_LINE_BREAKS_AND_WITHOUT_BACKSLASH_N
+-----END CERTIFICATE-----',
     name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
     # Optional signout URL, not supported by all identity providers
     signout_url: 'https://sso.example.com/saml2/idp/SingleLogoutService.php?ReturnTo=',
