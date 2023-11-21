@@ -25,6 +25,12 @@ module RedmineSaml
             user.login = user_attributes[:login].presence || user_attributes[:mail]
             user.language = Setting.default_language
             user.activate
+            if user_attributes[:admin].present?
+              user.admin = user_attributes[:admin]
+            else
+              user.admin = 'false'
+            end
+
             user.save!
             user.reload
           end
@@ -35,6 +41,11 @@ module RedmineSaml
             user.admin = user_attributes[:admin] if user_attributes[:admin].present?
           end
 
+          # Debug : check attributes retrueved by the RedmineSaml.user_attributes_from_saml method
+          # File.write('/tmp/attributes.txt', user_attributes)
+
+
+          
           RedmineSaml.on_login_callback&.call omniauth, user
 
           user

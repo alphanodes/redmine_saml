@@ -61,7 +61,7 @@ module RedmineSaml
       end
 
       def required_attribute_mapping
-        %i[login firstname lastname mail]
+        %i[login firstname lastname mail admin]
       end
 
       def validate_configuration!
