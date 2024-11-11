@@ -6,8 +6,8 @@ Rails:
   Enabled: true
 
 AllCops:
-  TargetRubyVersion: 2.7
-  TargetRailsVersion: 6.1.4
+  TargetRubyVersion: 3.1
+  TargetRailsVersion: 7.2
   NewCops: enable
 
 Metrics/AbcSize:
