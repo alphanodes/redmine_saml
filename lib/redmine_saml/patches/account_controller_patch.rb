@@ -24,7 +24,7 @@ module RedmineSaml
         end
 
         def login_with_saml_redirect
-          render_404
+          redirect_to ::RedmineSaml.configured_saml['idp_sso_service_url']
         end
 
         def login_with_saml_callback
